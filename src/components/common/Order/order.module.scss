@@ -1,0 +1,72 @@
+@import "./../../../style/mixin";
+.orderComp {
+  @include d-flex(flex-start, flex-start, column, 1rem);
+  width: 30%;
+  padding: 2rem;
+  border-radius: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  &_title {
+    color: black;
+    font-size: 3rem;
+  }
+  &_form {
+    @include d-flex(flex-start, flex-start, column, 2rem);
+    width: 100%;
+    &_item {
+      @include d-flex(flex-start, flex-start, column, 0.4rem);
+      width: 100%;
+      &_label {
+        font-weight: bold;
+        font-size: 1.8rem;
+      }
+      .orderComp_form_item_select,
+      .orderComp_form_item_input_date,
+      .orderComp_form_item_notes {
+        border: 1px solid #dfdfdf;
+        border-radius: 1rem;
+        width: 100%;
+        padding: 0.6rem 1rem;
+      }
+    }
+    &_itemPr {
+      @include d-flex(flex-start, flex-start, column, 1rem);
+      width: 100%;
+      background-color: #f5f5f5;
+      padding: 2rem;
+      border-radius: 1rem;
+      &_title {
+        font-size: 2rem;
+      }
+      &_info {
+        @include d-flex(flex-start,flex-start,column,1rem);
+        width: 100%;
+        .orderComp_form_itemPr_info_product,
+        .orderComp_form_itemPr_info_product_input_quantity,
+        .orderComp_form_itemPr_info_product_input_price {
+          width: 100%;
+          padding: 1rem;
+          border-radius: 1rem;
+          border: 1px solid #dfdfdf;
+          background-color: #fff;
+        }
+        .orderComp_form_itemPr_info_product_btn_delete{
+            width: 15rem;
+            font-size: 1.4rem;
+            height: 3rem;
+            background-color: #F44336;
+            color: white;
+            border-radius: 1rem;
+        }
+    }
+    .orderComp_form_itemPr_addProduct_btn{
+        width: 15rem;
+        font-size: 1.4rem;
+        height: 3rem;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 1rem;
+
+      }
+    }
+  }
+}
