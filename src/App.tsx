@@ -1,14 +1,16 @@
+import { Outlet } from 'react-router-dom';
 import './App.css';
-import Order from './components/common/Order/Order';
 import Navigation from './components/layout/Navigation/Navigation';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
 
   return (
-    <>
-    {/* <Order/> */}
+    <div className='app'>
     <Navigation/>
-    </>
+      <AppRoutes/>
+    <Outlet/>
+    </div>
   )
 }
 

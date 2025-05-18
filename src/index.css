@@ -6,6 +6,11 @@
 html {
   font-size: 62.5%;
 }
+body{
+     /* font-family: "Poppins", sans-serif; */
+     /* font-family: "Rubik", sans-serif; */
+     font-family: "Roboto", sans-serif;
+}
 select{
     border: none;
     outline: none;
@@ -21,6 +26,8 @@ button{
     cursor: pointer;
 }
 a{
-    list-style-type: none;
     text-decoration: none;
+}
+li{
+    list-style-type: none;
 }

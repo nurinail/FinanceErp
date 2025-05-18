@@ -1,0 +1,87 @@
+@import "../../../style/mixin";
+.orderTableComp {
+  @include d-flex(flex-start, flex-start, column, 2rem);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 2rem;
+  margin-top: 1rem;
+  width: 100%;
+  &_title {
+    font-size: 2.5rem;
+  }
+  &_search {
+    @include d-flex(flex-start, flex-start, row, 1rem);
+    &_input {
+      border: 1px solid #dddddd;
+      height: 3rem;
+      padding-inline: 1rem;
+      border-radius: 1rem;
+    }
+    &_select {
+      border: 1px solid #dddddd;
+      height: 3rem;
+      padding-inline: 1rem;
+      border-radius: 1rem;
+    }
+  }
+  &_table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    padding-inline: 1rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    thead,
+    tbody {
+      width: 100%;
+      tr {
+        border: 1px solid #dddddd;
+        @include d-flex(center, space-between, row, 0);
+        gap: 0;
+        th,
+        td {
+          width: 16%;
+          text-align: start;
+          padding: 1.1rem;
+          overflow: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          ::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+          }
+        }
+        th {
+          font-size: 1.6rem;
+        }
+        td {
+          font-size: 1.3rem;
+        }
+        .orderTableComp_table_number{
+            width: 4%;
+        }
+        .orderTableComp_table_tbody_rowButtons{
+            @include d-flex(center,flex-start,row,1rem);
+            .orderTableComp_table_tbody_rowButtons_item{
+                padding:0.3rem 1rem;
+                border-radius: 1rem;
+                border: none;
+                color: white;
+            }
+            .changeBtn{
+                background-color: rgb(8, 151, 8);
+            }
+            .deleteBtn{
+                background-color: red;
+            }
+        }
+      }
+      .orderTableComp_table_thead_row:first-child {
+        background-color: #f5f6fa;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.app{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    position: relative;
+    gap: 1rem;
+}

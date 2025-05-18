@@ -1,11 +1,12 @@
 import React from "react";
 import classNames from "classnames";
 import style from "./order.module.scss";
+import OrderTable from "../OrderTable/OrderTable";
 
 const Order = () => {
   return <div className={style.orderComp}>
-    <h2 className={style.orderComp_title}>Yeni Sifariş</h2>
     <form className={style.orderComp_form}>
+    <h2 className={style.orderComp_title}>Yeni Sifariş</h2>
         <div className={style.orderComp_form_item}>
             <label className={style.orderComp_form_item_label} htmlFor="customer">Müştəri</label>
             <select className={style.orderComp_form_item_select} name="" id="customer">
@@ -48,6 +49,7 @@ const Order = () => {
             <textarea className={style.orderComp_form_item_notes} name="" id="notes"></textarea>
         </div>
     </form>
+    <OrderTable/>
   </div>;
 };
 
