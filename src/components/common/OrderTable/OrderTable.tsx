@@ -9,6 +9,7 @@ const OrderTable = () => {
       <div className={style.orderTableComp_search}>
         <input className={style.orderTableComp_search_input} type="text" placeholder="Sifariş axtar"/>
         <select className={style.orderTableComp_search_select} name="" id="">
+            <option value="">Hamısı</option>
             <option value="">laqonda</option>
             <option value="">direl</option>
             <option value="">preparatur</option>
