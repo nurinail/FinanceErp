@@ -19,10 +19,6 @@ const Order = () => {
             <label className={style.orderComp_form_item_label} htmlFor="">Sifariş Tarixi</label>
             <input className={style.orderComp_form_item_input_date} type="date" />
         </div>
-        <div className={style.orderComp_form_item}>
-            <label className={style.orderComp_form_item_label} htmlFor="">Çatdırılma Tarixi</label>
-            <input className={style.orderComp_form_item_input_date} type="date" />
-        </div >
         <div className={classNames(style.orderComp_form_itemPr)}>
             <h2 className={style.orderComp_form_itemPr_title}>Sifariş Məhsulları</h2>
             <div className={style.orderComp_form_itemPr_info}>

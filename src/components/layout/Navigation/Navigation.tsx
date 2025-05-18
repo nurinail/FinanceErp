@@ -18,7 +18,7 @@ const Navigation = () => {
             <li className={style.navigationComp_nav_menu_item}><Link to={"/order"} className={style.navigationComp_nav_menu_item_link}><SlBasket/> Satış</Link></li>
             <li className={style.navigationComp_nav_menu_item}><Link to={"/orderTable"} className={style.navigationComp_nav_menu_item_link}><SlBasket/> Table</Link></li>
             <li className={style.navigationComp_nav_menu_item}><Link to={"/order"} className={style.navigationComp_nav_menu_item_link}><IoIosPeople/> HR</Link></li>
-            <li className={style.navigationComp_nav_menu_item}><Link to={"/order"} className={style.navigationComp_nav_menu_item_link}><FaCreditCard/> Kartlar</Link></li>
+            <li className={style.navigationComp_nav_menu_item}><Link to={"/finance"} className={style.navigationComp_nav_menu_item_link}><FaCreditCard/> Kartlar</Link></li>
             <li className={style.navigationComp_nav_menu_item}><Link to={"/order"} className={style.navigationComp_nav_menu_item_link}><FaWarehouse/> Anbar</Link></li>
             <li className={style.navigationComp_nav_menu_item}><Link to={"/order"} className={style.navigationComp_nav_menu_item_link}><GrDocumentPerformance/> Hesabatlar</Link></li>
         </ul>
