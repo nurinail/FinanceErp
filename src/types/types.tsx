@@ -1,14 +1,15 @@
 export interface EmployeeInitialState{
     workers:EmployeeType[],
+    isWorkerTable:boolean,
 }
 export interface EmployeeType{
  id: number ,
   fullname:string,
   email:string,
-  phoneNumber:number ,
+  phoneNumber:any  ,
   position:string,
-  salary:number ,
+  salary:any  ,
   date:any,
   department:string,
-  workplace:"office" | "remote" | "hybrid",
+  workplace:"office" | "remote" | "hybrid" ,
 }
