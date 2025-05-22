@@ -1,6 +1,5 @@
 .app{
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
+    display: flex;
     position: relative;
 }
