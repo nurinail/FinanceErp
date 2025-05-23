@@ -13,3 +13,26 @@ export interface EmployeeType{
   department:string,
   workplace:"office" | "remote" | "hybrid" ,
 }
+export interface InventoryType{
+  id:number;
+  name:string;
+  count:number;
+  prices:number;
+  category:string;
+}
+export interface SalesType{
+  id:number;
+  productname:string;
+  customerName:string;
+  date:string;
+  prices:number;
+  notes:string;
+  paymentMethod:"cash"|"bankaccount"|"receivable";
+
+
+}
+export interface ERPState{
+  inventory:InventoryType[];
+  sales:SalesType[];
+  
+}
