@@ -2,18 +2,17 @@ import React from "react";
 import classNames from "classnames";
 import style from "./order.module.scss";
 import OrderTable from "../OrderTable/OrderTable";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store/store";
 
 const Order = () => {
+    const productsData=useSelector((state: RootState) => state.product.products)
   return <div className={style.orderComp}>
     <form className={style.orderComp_form}>
     <h2 className={style.orderComp_title}>Yeni Sifariş</h2>
         <div className={style.orderComp_form_item}>
             <label className={style.orderComp_form_item_label} htmlFor="customer">Müştəri</label>
-            <select className={style.orderComp_form_item_select} name="" id="customer">
-                <option value="">Big Four</option>
-                <option value="">Big Four</option>
-                <option value="">Big Four</option>
-            </select>
+            <input className={style.orderComp_form_item_select} type="text" />
         </div>
         <div className={style.orderComp_form_item}>
             <label className={style.orderComp_form_item_label} htmlFor="">Sifariş Tarixi</label>
@@ -23,8 +22,11 @@ const Order = () => {
             <h2 className={style.orderComp_form_itemPr_title}>Sifariş Məhsulları</h2>
             <div className={style.orderComp_form_itemPr_info}>
                 <select className={style.orderComp_form_itemPr_info_product} name="" id="">
-                    <option value="">komputer</option>
-                    <option value="">qələm</option>
+                    <option value="" disabled selected >Məhsul Seçin</option>
+                    {productsData.map((item)=>(
+                        <option value="">{item}</option>
+
+                    ))}
                 </select>
                 <input className={style.orderComp_form_itemPr_info_product_input_quantity} type="number" placeholder="Miqdar"/>
                 <input className={style.orderComp_form_itemPr_info_product_input_price} type="number" placeholder="Qiymət"/>

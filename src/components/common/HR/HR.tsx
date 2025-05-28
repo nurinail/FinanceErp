@@ -25,17 +25,7 @@ const HR = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<EmployeeType>({
-    defaultValues: {
-      fullname: "",
-      email: "",
-      phoneNumber: null,
-      position: "",
-      salary: null,
-      date: "",
-      department: "",
-    },
-  });
+  } = useForm<EmployeeType>();
   const onSubmit = (data: EmployeeType) => {
     const newEmployee: EmployeeType = {
       ...data,

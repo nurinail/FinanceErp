@@ -64,6 +64,21 @@
           
         }
       }
+      .changeBtn{
+        background-color: #c2bebe;
+        width: 10rem;
+        color: #333;
+        padding-block: .2rem;
+        border-radius: 1rem;
+      }
+      .saveBtn{
+        padding-block: .2rem;
+        border-radius: 1rem;
+        background-color: #28a745;
+        width: 10rem;
+        color: white;
+
+      }
       .stockComp_table_wrapper_item:first-child{
         padding-left: 1rem;
       }
