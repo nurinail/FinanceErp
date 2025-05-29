@@ -1,25 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import classNames from "classnames";
 import style from "./hr.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import HrTable from "./HrTable";
+import type { WorkersType } from "../../../types/types";
+import { addWorker } from "../../../store/slices/workerSlice";
 
 const HR = () => {
- 
+  const dispatch=useDispatch();
+ const [showWorkers,setShowWorkers]=useState<boolean>(false)
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<WorkersType>({
+    mode:"onSubmit",
+    defaultValues:{
+      department:"",
+      place:"",
+    }
+  });
   
+const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
+  console.log(data);
+  const workerId=Date.now();
+  const newWorker:WorkersType={
+    ...data,
+    number:Number(data.number),
+    salary:Number(data.salary),
+    id:workerId,
+    desc:"Yeni İşçi Əlavə edildi"
+  }
+  dispatch(addWorker(newWorker))
 
+}
   return (
     <div className={style.container}>
       <div className={style.hrComp}>
         <h2 className={style.hrComp_title}>İnsan Resursları</h2>
-        <form className={style.hrComp_form}>
+        <form onSubmit={handleSubmit(onSubmit)} className={style.hrComp_form}>
           <div className={style.hrComp_form_input}>
             <label
               htmlFor="fullnameInput"
@@ -31,7 +52,7 @@ const HR = () => {
             <input
               id="fullnameInput"
               type="text"
-              {...register("fullname", {
+              {...register("name", {
                 required: {
                   value: true,
                   message: "Xananı tam doldurun",
@@ -73,7 +94,7 @@ const HR = () => {
             <input
               id="phoneNumberInput"
               type="text"
-              {...register("phoneNumber", {
+              {...register("number", {
                 required: {
                   value: true,
                   message: "Xananı tam doldurun",
@@ -192,7 +213,7 @@ const HR = () => {
             </label>
             <select
               id="workplaceType"
-              {...register("workplace", {
+              {...register("place", {
                 required: {
                   value: true,
                   message: "Xananı tam doldurun",
@@ -212,10 +233,14 @@ const HR = () => {
           <button type="submit" className={style.hrComp_form_submit}>
             Əlavə Et
           </button>
+          <button onClick={()=>setShowWorkers(prev=>!prev)} type="button" className={style.hrComp_form_submit}>
+           Siyahını göstər
+          </button>
           
         </form>
       </div>
-       <HrTable />
+      {showWorkers?<HrTable />:null}
+       
     </div>
   );
 };

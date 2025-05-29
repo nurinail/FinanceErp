@@ -2,10 +2,11 @@ import classNames from "classnames";
 import { useForm } from "react-hook-form";
 import style from "./stock.module.scss";
 import StockTable from "./StockTable";
-import type { InventoryType } from "../../../types/types";
+import type { HistoryType, InventoryType } from "../../../types/types";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { addNewInventor } from "../../../store/slices/inventorySlice";
 import type { RootState } from "../../../store/store";
+import { addHistory } from "../../../store/slices/history";
 
 const Stock = () => {
   const dispatch = useDispatch();
@@ -19,17 +20,32 @@ shallowEqual);
     formState: { errors },
   } = useForm<InventoryType>({
     mode:"onSubmit",
+    defaultValues: {
+    category: "",  
+    balance: "",   
+  },
   });
   const onSubmit = (data: Omit<InventoryType, "id" | "desc">) => {
+    const timeId=Date.now();
     const newInventory: InventoryType = {
       ...data,
       count:Number(data.count),
       prices:Number(data.prices),
       total:Number(data.total),
-      id: Date.now(),
+      id: timeId,
       desc: "Məhsul Alışı",
     };
+    const historyItem: HistoryType = {
+    id: timeId,
+    desc: "Məhsul Alışı",
+    date: data.date,
+    name: data.name,
+    balance: data.balance,
+    total: Number(data.count) * Number(data.prices),
+  };
+    dispatch(addHistory(historyItem))
     dispatch(addNewInventor(newInventory));
+
     reset();
   };
   
@@ -117,7 +133,7 @@ console.log(inventorData)
               message:"Kateqoriyanı seçin!",
             } })}
           >
-            <option value="" disabled selected>---</option>
+            <option value="" disabled>---</option>
             <option value="Elektronik">Elektronik</option>
             <option value="Məişət">Məişət</option>
             <option value="Mobil">Mobil</option>
@@ -136,7 +152,7 @@ console.log(inventorData)
               message:"Məxaric formasını seçin!"
             } })}
           >
-            <option value="" disabled selected>---</option>
+            <option value="" disabled>---</option>
             <option value="nağd">nağd məxaric</option>
             <option value="bank hesabı">bank hesabı</option>
             <option value="borc">borc</option>
@@ -148,6 +164,9 @@ console.log(inventorData)
           Əlavə et
         </button>
       </form>
+          {
+      inventorData.length===0?
+      <p style={{width:"100%",textAlign:"center",fontSize:"2.6rem"}}>Data Yoxdur</p>:
       <div className={style.stockComp_table}>
         <ul
           className={classNames(
@@ -166,6 +185,8 @@ console.log(inventorData)
           <StockTable key={item.id} item={item} />
         ))}
       </div>
+      
+    }
     </div>
   );
 };
