@@ -49,43 +49,51 @@
     @include d-flex(flex-start, flex-start, column, 0);
     background-color: white;
     padding: 1rem;
+    .stockComp_table_wrapper_head{
+      border-bottom: 1px solid rgb(211, 207, 207);
+          padding-block: 1rem;
+    }
     &_wrapper {
       @include d-grid(1fr 1fr 1fr 1fr 1fr 1fr, 0);
       width: 100%;
       &_item {
         font-size: 1.5rem;
-        padding-block: 1rem;
-        border-bottom: 1px solid #ddd;
         text-align: start;
-        input {
-          text-align: start;
+        &_text{
+          padding-block: 1rem;
+          // border: 1px solid red;
           width: 100%;
           font-size: 1.4rem;
-          
+        }
+        &_input{
+          font-size: 1.4rem;
+          padding-block: 1rem;
+          width: 100%;
+          border-bottom: 1px solid #e4b228;
+        }
+        
+      }
+      &_buttons{
+        @include d-flex(center,flex-start,row,1rem);
+        &_item{
+          padding: .5rem 1rem;
+          font-size: 1.3rem;
+          border-radius: 1rem;
+          background-color: green;
+          color: white;
+        }
+        .stockComp_table_wrapper_buttons_item:first-child{
+          background-color: rgb(208, 52, 52);
+        }
+        &_item_save{
+          background-color: #e4b228;
         }
       }
-      .changeBtn{
-        background-color: #c2bebe;
-        width: 10rem;
-        color: #333;
-        padding-block: .2rem;
-        border-radius: 1rem;
-      }
-      .saveBtn{
-        padding-block: .2rem;
-        border-radius: 1rem;
-        background-color: #28a745;
-        width: 10rem;
-        color: white;
-
-      }
-      .stockComp_table_wrapper_item:first-child{
-        padding-left: 1rem;
-      }
+      
+      
+      
     }
-    .stockComp_table_wrapper:first-child{
-      background-color: #7b9ab6;
-      color: white;
-    }
+    
+   
   }
 }

@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import  workerSlice  from './slices/workerSlice';
-import  productSlice  from './slices/productSlice';
+import inventorySlice from "./slices/inventorySlice";
 export const store = configureStore({
   reducer: {
-    product:productSlice,
-    employee:workerSlice,
+    inventory:inventorySlice,
   },
 })
 

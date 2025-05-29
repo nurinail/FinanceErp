@@ -29,6 +29,20 @@
         padding: 0.6rem 1rem;
       }
     }
+    &_item_customer{
+      // position: relative;
+      &_button{
+        // position: absolute;
+        left: 8rem;
+        font-weight: bold;
+        top:-.6rem;
+        background-color: rgb(62, 188, 237);
+        padding: .5rem 1rem;
+        border-radius: 1rem;
+        color: rgb(48, 50, 49);
+        border: 1px solid rgb(4, 60, 53);
+      }
+    }
     &_itemPr {
       @include d-flex(flex-start, flex-start, column, 1rem);
       width: 100%;

@@ -3,44 +3,23 @@ import { useForm, Controller } from "react-hook-form";
 import classNames from "classnames";
 import style from "./hr.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import type { EmployeeType } from "../../../types/types";
-import {
-  addWorker,
-  handleIsWorkerTable,
-  removeWorker,
-} from "../../../store/slices/workerSlice";
-import type { RootState } from "../../../store/store";
 import HrTable from "./HrTable";
 
 const HR = () => {
-  const dispatch = useDispatch();
-  const employeeData = useSelector(
-    (state: RootState) => state.employee.workers
-  );
-  const isWorkerTable = useSelector(
-    (state: RootState) => state.employee.isWorkerTable
-  );
+ 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<EmployeeType>();
-  const onSubmit = (data: EmployeeType) => {
-    const newEmployee: EmployeeType = {
-      ...data,
-      id: Date.now(),
-    };
-    dispatch(addWorker(newEmployee));
-    console.log(employeeData);
-    reset();
-  };
+  } = useForm();
+  
 
   return (
     <div className={style.container}>
       <div className={style.hrComp}>
         <h2 className={style.hrComp_title}>İnsan Resursları</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className={style.hrComp_form}>
+        <form className={style.hrComp_form}>
           <div className={style.hrComp_form_input}>
             <label
               htmlFor="fullnameInput"
@@ -60,7 +39,7 @@ const HR = () => {
               })}
               className={style.hrComp_form_input_item}
             />
-            <p>{errors.fullname?.message}</p>
+            <p></p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -233,17 +212,10 @@ const HR = () => {
           <button type="submit" className={style.hrComp_form_submit}>
             Əlavə Et
           </button>
-          <button
-            onClick={() => dispatch(handleIsWorkerTable())}
-            className={style.hrComp_form_submit}
-          >
-            {isWorkerTable
-              ? "İşçi Siyahısını gizlət"
-              : "İşçi Siyahısını göstər"}
-          </button>
+          
         </form>
       </div>
-      {isWorkerTable && <HrTable />}
+       <HrTable />
     </div>
   );
 };

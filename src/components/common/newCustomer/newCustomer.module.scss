@@ -1,0 +1,72 @@
+@import "../../../style/mixin";
+.newCustomer_form{
+    @include d-flex(flex-start,flex-start,column,1.5rem);
+    width: 40%;
+    position: fixed;
+    transform: translate(-50%,-50%);
+    transition: all 2s;
+    // opacity: 1;
+    left: 50%;
+    top: 40%;
+    border-radius: 1rem;
+    padding: 2rem;
+    background-color: rgba($color: #235383, $alpha: .2);
+    &_title{
+        font-size: 2.4rem;
+        align-self: center;
+    }
+    &_item{
+        @include d-flex(flex-start,flex-start,column,_);
+        width: 100%;
+        &_label{
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+        &_input{
+            width: 100%;
+            background-color: white;
+            padding: .4rem 1rem;
+            border-radius: 1rem;
+            border: 1px solid #d4d4d4;
+        }
+        &_input_file{
+            display: none;
+        }
+        &_label_file{
+            @include d-flex(flex-start,flex-start,column,_);
+            // border: 1px solid red;
+            width: 100%;
+            &_parent{
+                @include d-flex(center,center,column,1rem);
+                background-color: white;
+                width: 100%;
+                padding-block: 3rem;
+                &_icon{
+                    color: rgb(6, 147, 208);
+                    font-size: 5rem;
+                }
+                &_text{
+                    color: rgb(6, 147, 208);
+
+                }
+            }
+        }
+    }
+    &_message{
+        width: 100%;
+        font-size: 2rem;
+        text-align: center;
+        color: #2daa78;
+    }
+    &_button{
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+        background-color: #2daa78;
+        color: white;
+        font-size: 1.4rem;
+    }
+
+    
+
+
+}
