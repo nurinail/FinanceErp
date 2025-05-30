@@ -39,3 +39,30 @@ export interface WorkersType{
 export interface WorkerInitialState{
     workers:WorkersType[];
 }
+
+export interface OrderType{
+    id:number;
+    ordernumber:number;
+    customer:string;//
+    product:string;//
+    payment:string;//
+    desc:string;
+    date:string;//
+    total:number;
+    count:number;//
+    prices:number;//
+    note:string;//
+}
+export interface OrderInitialState{
+    orders:OrderType[];
+    customers:CustomerType[];
+}
+export interface CustomerType{
+    id:number;
+    name:string;
+    contract:string;
+    date:string;
+}
+
+
+

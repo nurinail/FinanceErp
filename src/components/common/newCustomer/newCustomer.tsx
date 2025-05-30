@@ -4,13 +4,19 @@ import classNames from "classnames";
 import style from "./newCustomer.module.scss";
 import { MdOutlineFileUpload } from "react-icons/md";
 
-const NewCustomer = () => {
+type ModalType={
+  setIsModalCustomer:React.Dispatch<React.SetStateAction<boolean>>,
+}
+
+const NewCustomer = ({setIsModalCustomer}:ModalType) => {
     
   const {
     register,handleSubmit,reset,formState:{errors}
   }=useForm();
-  
-  return <form className={style.newCustomer_form}>
+  const onSubmit=()=>{
+    
+  }
+  return <form onSubmit={handleSubmit(onSubmit)} className={style.newCustomer_form}>
     <h2 className={style.newCustomer_form_title}>Yeni Müştəri</h2>
     <div className={style.newCustomer_form_item}>
       <label htmlFor="customername" className={style.newCustomer_form_item_label}>Müştəri Adı</label>

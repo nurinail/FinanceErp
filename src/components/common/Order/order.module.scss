@@ -30,13 +30,12 @@
       }
     }
     &_item_customer{
-      // position: relative;
       &_button{
-        // position: absolute;
+        margin-left: 1rem;
         left: 8rem;
         font-weight: bold;
         top:-.6rem;
-        background-color: rgb(62, 188, 237);
+        background-color: rgb(108, 208, 236);
         padding: .5rem 1rem;
         border-radius: 1rem;
         color: rgb(48, 50, 49);

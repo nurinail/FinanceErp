@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import classNames from "classnames";
 import style from "./hr.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import HrTable from "./HrTable";
-import type { WorkersType } from "../../../types/types";
+import type { HistoryType, WorkersType } from "../../../types/types";
 import { addWorker } from "../../../store/slices/workerSlice";
+import { addHistory } from "../../../store/slices/history";
+import type { RootState } from "../../../store/store";
 
 const HR = () => {
   const dispatch=useDispatch();
+  const workersData=useSelector((state:RootState)=>state.worker.workers)
  const [showWorkers,setShowWorkers]=useState<boolean>(false)
   const {
     register,
@@ -33,7 +36,18 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
     id:workerId,
     desc:"Yeni İşçi Əlavə edildi"
   }
-  dispatch(addWorker(newWorker))
+  const historyWorkerItem:HistoryType={
+    id:workerId,
+    desc:"Yeni İşçi qəbulu",
+    date:data.date,
+    total:Number(data.salary),
+    name:data.name,
+    balance:"",
+  }
+  dispatch(addWorker(newWorker));
+  dispatch(addHistory(historyWorkerItem));
+  reset();
+
 
 }
   return (
@@ -55,12 +69,15 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               {...register("name", {
                 required: {
                   value: true,
-                  message: "Xananı tam doldurun",
-                },
+                  message: "Xananı tam doldurun!",
+                },minLength:{
+                  value:6,
+                  message:"Ad və Soyad 6 simvoldan az ola bilməz!"
+                }
               })}
               className={style.hrComp_form_input_item}
             />
-            <p></p>
+            <p style={{color:"red"}}>{errors.name?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -77,11 +94,12 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               {...register("email", {
                 required: {
                   value: true,
-                  message: "Xananı tam doldurun",
+                  message: "Xananı tam doldurun!",
                 },
               })}
               className={style.hrComp_form_input_item}
             />
+            <p style={{color:"red"}}>{errors.email?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -97,11 +115,15 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               {...register("number", {
                 required: {
                   value: true,
-                  message: "Xananı tam doldurun",
-                },
+                  message: "Xananı tam doldurun!",
+                },minLength:{
+                  value:10,
+                  message:"Nömrəni düzgün daxil et!"
+                }
               })}
               className={style.hrComp_form_input_item}
             />
+            <p style={{color:"red"}}>{errors.number?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -117,11 +139,15 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               {...register("position", {
                 required: {
                   value: true,
-                  message: "Xananı tam doldurun",
-                },
+                  message: "Xananı tam doldurun!",
+                },minLength:{
+                  value:3,
+                  message:"Vəzifə adı 3 simvoldan az ola bilməz!"
+                }
               })}
               className={style.hrComp_form_input_item}
             />
+            <p style={{color:"red"}}>{errors.position?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -137,11 +163,15 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               {...register("salary", {
                 required: {
                   value: true,
-                  message: "Xananı tam doldurun",
-                },
+                  message: "Xananı tam doldurun!",
+                },min:{
+                  value:400,
+                  message:"Minimum Əmək Haqqına görə, ƏməkHaqqı 400 manatdan az ola bilməz!"
+                }
               })}
               className={style.hrComp_form_input_item}
             />
+            <p style={{color:"red"}}>{errors.salary?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -157,11 +187,12 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               {...register("date", {
                 required: {
                   value: true,
-                  message: "Xananı tam doldurun",
+                  message: "Tarix seçin!",
                 },
               })}
               className={style.hrComp_form_input_item}
             />
+            <p style={{color:"red"}}>{errors.date?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -176,7 +207,7 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               {...register("department", {
                 required: {
                   value: true,
-                  message: "Xananı tam doldurun",
+                  message: "Departamenti seçin!",
                 },
               })}
               className={style.hrComp_form_input_item}
@@ -202,6 +233,7 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               <option value="İdarəetmə">İdarəetmə</option>
               <option value="Daxili Nəzarət">Daxili Nəzarət</option>
             </select>
+            <p style={{color:"red"}}>{errors.department?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -216,7 +248,7 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               {...register("place", {
                 required: {
                   value: true,
-                  message: "Xananı tam doldurun",
+                  message: "İşləmə yerini seç!",
                 },
               })}
               className={style.hrComp_form_input_item}
@@ -228,18 +260,41 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               <option value="Uzaqdan">Uzaqdan</option>
               <option value="Hibrid">Hibrid</option>
             </select>
+            <p style={{color:"red"}}>{errors.place?.message}</p>
           </div>
 
           <button type="submit" className={style.hrComp_form_submit}>
             Əlavə Et
           </button>
           <button onClick={()=>setShowWorkers(prev=>!prev)} type="button" className={style.hrComp_form_submit}>
-           Siyahını göstər
+           Siyahını {showWorkers?"gizlət":"göstər"}
           </button>
           
         </form>
       </div>
-      {showWorkers?<HrTable />:null}
+
+      {
+        showWorkers?<div className={style.hrComp_table}>
+        <ul className={classNames(style.hrComp_table_wrapper,style.hrComp_table_head)}>
+          <li className={style.hrComp_table_wrapper_item}>№</li>
+          <li className={style.hrComp_table_wrapper_item}>Ad Soyad</li>
+          <li className={style.hrComp_table_wrapper_item}>Email</li>
+          <li className={style.hrComp_table_wrapper_item}>Telefon Nömrəsi</li>
+          <li className={style.hrComp_table_wrapper_item}>Vəzifə</li>
+          <li className={style.hrComp_table_wrapper_item}>Maaş</li>
+          <li className={style.hrComp_table_wrapper_item}>Başlama Tarixi</li>
+          <li className={style.hrComp_table_wrapper_item}>Departament</li>
+          <li className={style.hrComp_table_wrapper_item}>Yeri</li>
+          <li className={style.hrComp_table_wrapper_item}>Əməliyyat</li>
+        </ul>
+      {workersData.map((item:WorkersType,index:number)=>(
+        <HrTable key={item.id} index={index+1} worker={item}/>
+      ))}
+
+      </div>:
+      null
+      }
+      
        
     </div>
   );

@@ -1,104 +1,93 @@
 @import "../../../style/mixin";
-.container{
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .hrComp {
+    @include d-flex(flex-start, flex-start, column, 1rem);
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    .hrComp{
-        @include d-flex(flex-start,flex-start,column,1rem);
+    background-color: #f5f6fa;
+    border-radius: 1rem;
+    padding: 2rem;
+    &_title {
+      font-size: 2.4rem;
+      border-radius: 1rem;
+      width: 100%;
+      padding: 2rem;
+      background-color: white;
+      color: #2c3e50;
+    }
+    &_form {
+      width: 100%;
+      @include d-flex(flex-start, flex-start, column, 1rem);
+      &_input {
+        @include d-flex(flex-start, flex-start, column, 0.6rem);
         width: 100%;
-        background-color: #F5F6FA;
-        border-radius: 1rem;
-        padding: 2rem;
-        &_title{
-            font-size: 2.4rem;
-            border-radius: 1rem;
-            width: 100%;
-            padding: 2rem;
-            background-color: white;
-            color: #2C3E50;
-    
+        &_label {
+          font-size: 1.4rem;
+          color: #293c50;
+          font-weight: 500;
         }
-        &_form{
+        &_item {
+          width: 100%;
+          background-color: white;
+          padding: 0.6rem;
+          border-radius: 0.6rem;
+          border: 1px solid #ddd;
+        }
+      }
+      &_submit {
+        background-color: rgb(5, 115, 143);
+        padding: 1rem 2rem;
+        color: white;
+        border-radius: 1rem;
+      }
+      .hrComp_form_submit:last-child {
+        background-color: rgb(128, 60, 0);
+      }
+    }
+    &_table {
+      @include d-flex(flex-start, flex-start, column, 2rem);
+      width: 100%;
+      margin-top: 2.5rem;
+      background-color: #ddd;
+      padding: 1rem 0 1rem 1rem;
+      border-radius: 1rem;
+      &_wrapper {
+        @include d-grid(
+          0.3fr 1fr 1.5fr 0.8fr 1fr 0.5fr 0.6fr 1fr 0.4fr 1fr,
+          1rem
+        );
+        width: 100%;
+        &_item {
+          font-size: 1.3rem;
+          &_text {
+            padding: 0.3rem ;
+          }
+          &_input {
+            border-bottom: 1px solid rgb(0, 115, 255);
             width: 100%;
-            @include d-flex(flex-start,flex-start,column,1rem);
-            &_input{
-                @include d-flex(flex-start,flex-start,column,.6rem);
-                width: 100%;
-                &_label{
-                    font-size: 1.4rem;
-                    color: #293c50;
-                    font-weight: 500;
-                }
-                &_item{
-                    width: 100%;
-                    background-color: white;
-                    padding: .6rem;
-                    border-radius: .6rem;
-                    border: 1px solid #ddd;
-                }
-            }
-            &_submit{
-                background-color: rgb(5, 115, 143);
-                padding: 1rem 2rem;
-                color: white;
+            padding: 0.3rem 1rem;
+            font-size: 1.3rem;
+          }
+        }
+        &_item_buttons{
+            @include d-flex(center,flex-start,row,1rem);
+            &_item{
+                border: 1px solid rgb(67, 158, 11);
+                padding: .3rem 1rem;
                 border-radius: 1rem;
             }
-            .hrComp_form_submit:last-child{
-                background-color: rgb(128, 60, 0)
+            .hrComp_table_wrapper_item_buttons_item:first-child{
+                color: red;
             }
         }
-        &_table{
-            @include d-flex(flex-start,flex-start,column,2rem);
-            width: 100%;
-            margin-top: 2.5rem;
-            background-color: #ddd;
-            padding: 1rem 0 1rem 1rem;
-            border-radius: 1rem;
-            &_title{
-                font-size: 2.4rem;
-                color: #2C3E50;
-            }
-            &_wrapper{
-                width: 100%;
-                background-color: white;
-                border-collapse: collapse;
-                thead,tbody{
-                    width: 100%;
-                    tr{
-                        border: 1px solid #ddd;
-                        th,td{
-                            font-size: 1.4rem;
-                            text-align: start;
-                            padding: 1rem;
-                           
-                        }
-                    }
-                    .emptyTable{
-                        width: 100%;
-                        text-align: center;
-                        padding-block: 1rem;
-                        border: 1px solid red;
-                        
-                    }
-                    .hrComp_table_wrapper_thead_row{
-                        background-color: darkcyan;
-                        color: white;
-                    }
-                    .hrComp_table_wrapper_buttons{
-                        @include d-flex(center,center,row,.5rem);
-                        &_item{
-                            padding: .5rem 1rem;
-                            border-radius: 1rem;
-                            color: white;
-                            background-color: rgb(10, 100, 149);
-                        }
-                        .deleteBtn{
-                            background-color: rgb(167, 21, 21);
-                        }
-                    }
-                }
-    
-            }
-        }
+      }
+      &_head {
+        padding: 1rem;
+        background-color: #2c3e50;
+        color: #ddd;
+      }
     }
+  }
 }

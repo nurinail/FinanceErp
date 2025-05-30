@@ -3,7 +3,19 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { InventoryInitialState, InventoryType } from '../../types/types'
 
 const initialState: InventoryInitialState = {
-    inventory:[],
+    inventory:[
+      {
+id:11,
+    name:"Lagonda",//
+    category:"sdv",//
+    count:3,//
+    prices:4,//
+    total:12,
+    date:"12-12-2022",//
+    balance:"string",//
+    desc:"sdfdsfvfb",
+      },
+    ],
 }
 
 export const counterSlice = createSlice({
