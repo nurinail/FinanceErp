@@ -1,14 +1,20 @@
-import { Outlet } from 'react-router-dom';
-import './App.css';
-import Navigation from './components/layout/Navigation/Navigation';
-import AppRoutes from './routes/AppRoutes';
+import { Card, Space }from "antd"
+import './App.scss';
+import AppHeader from "./components/layout/AppHeader/AppHeader";
+import SideMenu from "./components/layout/SideMenu/SideMenu";
+import PageContent from "./components/layout/PageContent/PageContent";
+import AppFooter from "./components/layout/AppFooter/AppFooter";
 
 function App() {
 
   return (
-    <div >
-
-      <AppRoutes/>
+    <div className="app">
+      <AppHeader/>
+      <Space className="sideMenuAndPageContent">
+        <SideMenu />
+          <PageContent/>
+      </Space>
+      {/* <AppFooter/> */}
 
     </div>
   )

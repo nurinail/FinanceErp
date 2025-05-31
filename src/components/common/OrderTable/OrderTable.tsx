@@ -1,86 +1,41 @@
 import React from "react";
 import classNames from "classnames";
-import style from "./orderTable.module.scss";
+import style from "./orderTable.module.scss"
+import OrderTableItem from "./OrderTableItem";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store/store";
+import type { OrderType } from "../../../types/types";
 
 const OrderTable = () => {
-  return (
-    <div className={style.orderTableComp}>
-      <h2 className={style.orderTableComp_title}>Satış Sifarişləri</h2>
-      <div className={style.orderTableComp_search}>
-        <input className={style.orderTableComp_search_input} type="text" placeholder="Sifariş axtar"/>
-        <select className={style.orderTableComp_search_select} name="" id="">
-            <option value="">Hamısı</option>
-            <option value="">laqonda</option>
-            <option value="">direl</option>
-            <option value="">preparatur</option>
-        </select>
-      </div>
-      <table className={style.orderTableComp_table}>
-        <thead>
-            <tr className={style.orderTableComp_table_thead_row}>
-                <th className={style.orderTableComp_table_number}>Sıra</th>
-                <th>Sifariş №</th>
-                <th>Müştəri</th>
-                <th>Məhsul</th>
-                <th>Tarix</th>
-                <th>Məbləğ</th>
-                <th>Əməliyyatlar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td className={style.orderTableComp_table_number}>1</td>
-                <td>1234567</td>
-                <td>AzərFloatdskjfhdskj</td>
-                <td>Laqonda</td>
-                <td>14-05-2025</td>
-                <td>2300 Azn</td>
-                <td className={style.orderTableComp_table_tbody_rowButtons}>
-                    <button className={classNames(style.orderTableComp_table_tbody_rowButtons_item,style.changeBtn)}>dəyiş</button>
-                    <button className={classNames(style.orderTableComp_table_tbody_rowButtons_item,style.deleteBtn)}>sil</button>
-                </td>
-            </tr>
-            <tr>
-                <td className={style.orderTableComp_table_number}>1</td>
-                <td>1234567</td>
-                <td>AzərFloatdskjfhdskj</td>
-                <td>Laqonda</td>
-                <td>14-05-2025</td>
-                <td>2300 Azn</td>
-                <td className={style.orderTableComp_table_tbody_rowButtons}>
-                    <button className={classNames(style.orderTableComp_table_tbody_rowButtons_item,style.changeBtn)}>dəyiş</button>
-                    <button className={classNames(style.orderTableComp_table_tbody_rowButtons_item,style.deleteBtn)}>sil</button>
-                </td>
-            </tr>
-            <tr>
-                <td className={style.orderTableComp_table_number}>1</td>
-                <td>1234567</td>
-                <td>AzərFloatdskjfhdskj</td>
-                <td>Laqonda</td>
-                <td>14-05-2025</td>
-                <td>2300 Azn</td>
-                <td className={style.orderTableComp_table_tbody_rowButtons}>
-                    <button className={classNames(style.orderTableComp_table_tbody_rowButtons_item,style.changeBtn)}>dəyiş</button>
-                    <button className={classNames(style.orderTableComp_table_tbody_rowButtons_item,style.deleteBtn)}>sil</button>
-                </td>
-            </tr>
-            <tr>
-                <td className={style.orderTableComp_table_number}>1</td>
-                <td>1234567</td>
-                <td>AzərFloatdskjfhdskj</td>
-                <td>Laqonda</td>
-                <td>14-05-2025</td>
-                <td>2300 Azn</td>
-                <td className={style.orderTableComp_table_tbody_rowButtons}>
-                    <button className={classNames(style.orderTableComp_table_tbody_rowButtons_item,style.changeBtn)}>dəyiş</button>
-                    <button className={classNames(style.orderTableComp_table_tbody_rowButtons_item,style.deleteBtn)}>sil</button>
-                </td>
-            </tr>
-        </tbody>
+    const orders=useSelector((state:RootState)=>state.order.orders)
+  return <div className={style.orderTable}>
+        <h2 className={style.orderTable_title}>Satış</h2>
+        <div className={style.orderTable_filter}>
+            <input className={style.orderTable_filter_item} type="text" placeholder="Axtar..." />
+            <select className={style.orderTable_filter_item} name="" id="">
+                <option value="" disabled>Ödənişə görə</option>
+                <option value="nağd">nağd</option>
+                <option value="nağd">nisyə</option>
+                <option value="nağd">bank</option>
+            </select>
+        </div>
+        <div className={style.orderTable_parent}>
 
-      </table>
-    </div>
-  );
+      <ul className={classNames(style.orderTable_head)}>
+        <li className={style.orderTable_head_item}>Sıra</li>
+        <li className={style.orderTable_head_item}>Sifariş №</li>
+        <li className={style.orderTable_head_item}>Məhsul</li>
+        <li className={style.orderTable_head_item}>Ödəniş növü</li>
+        <li className={style.orderTable_head_item}>Tarix</li>
+        <li className={style.orderTable_head_item}>Məbləğ</li>
+        <li className={style.orderTable_head_item}>Əməliyyat</li>
+      </ul>
+      {orders&& orders.map((item:OrderType,index)=>(
+          <OrderTableItem key={item.id} index={index+1} order={item}/>
+      ))}
+        </div>
+
+      </div>;
 };
 
 export default OrderTable;

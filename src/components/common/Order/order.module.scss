@@ -1,9 +1,12 @@
 @import "./../../../style/mixin";
 .orderComp {
-  @include d-flex(flex-start, flex-start, column, 1rem);
+  @include d-flex(flex-start, flex-start, row, 1rem);
   width: 99%;
   border-radius: 2rem;
   margin-top: 2rem;
+  padding-bottom: 9rem;
+  height: 100%;
+  flex: 1;
   &_title {
       color: black;
       font-size: 3rem;
@@ -81,6 +84,12 @@
         border-radius: 1rem;
 
       }
+    }
+    .addButton{
+      padding: 1rem;
+      border-radius: 1rem;
+      background-color: #4CAF50;
+      color: white;
     }
   }
 }

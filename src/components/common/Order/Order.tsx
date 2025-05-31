@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import style from "./order.module.scss";
-import OrderTable from "../OrderTable/OrderTable";
 import NewCustomer from "./../newCustomer/NewCustomer";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
@@ -9,6 +8,7 @@ import { useForm } from "react-hook-form";
 import type { HistoryType, OrderType } from "../../../types/types";
 import { addOrder } from "../../../store/slices/orderSlice";
 import { addHistory } from "../../../store/slices/history";
+import OrderTable from "../OrderTable/OrderTable";
 
 const Order = () => {
   const dispatch=useDispatch();
@@ -47,7 +47,7 @@ const Order = () => {
         date:data.date,
         name:data.product,
         balance:data.payment,
-        total:Number(data.count)*Number(data.prices);
+        total:Number(data.count)*Number(data.prices),
 
       }
       dispatch(addOrder(orderItem));
@@ -206,9 +206,9 @@ const Order = () => {
           ></textarea>
           <p style={{color:"red"}}>{errors.note?.message}</p>
         </div>
-        <button type="submit">Əlavə eeeeeet</button>
+        <button className={style.addButton} type="submit">Əlavə Et</button>
       </form>
-      <OrderTable />
+      <OrderTable/>
     </div>
   );
 };

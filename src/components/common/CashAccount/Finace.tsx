@@ -1,8 +1,19 @@
-import React from "react";
 import classNames from "classnames";
 import style from "./finance.module.scss";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store/store";
+import { useEffect } from "react";
 
 const Finance = () => {
+  const inventorPurchases=useSelector((state:RootState)=>state.inventory.inventory);
+  let totalPurchases:number=0;
+  console.log(inventorPurchases)
+  useEffect(()=>{
+    for (let index = 0; index < inventorPurchases.length-1; index++) {
+      totalPurchases+= inventorPurchases[index].total;
+    }
+    console.log(totalPurchases)
+  },[inventorPurchases.length]);
   return (
     <div className={style.financeComp}>
       <h2 className={style.financeComp_title}>Maliyyə Məlumatları</h2>
@@ -18,6 +29,10 @@ const Finance = () => {
         <div className={style.financeComp_info_item}>
           <h3 className={style.financeComp_info_item_title}>Debitor</h3>
           <h2 className={style.financeComp_info_item_amount}>14440.00 AZN</h2>
+        </div>
+        <div className={style.financeComp_info_item}>
+          <h3 className={style.financeComp_info_item_title}>Alış</h3>
+          <h2 className={style.financeComp_info_item_amount}>{totalPurchases} AZN</h2>
         </div>
         <div className={style.financeComp_info_item}>
           <h3

@@ -46,7 +46,7 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
   }
   dispatch(addWorker(newWorker));
   dispatch(addHistory(historyWorkerItem));
-  reset();
+  // reset();
 
 
 }
@@ -272,7 +272,7 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
           
         </form>
       </div>
-
+      <div >
       {
         showWorkers?<div className={style.hrComp_table}>
         <ul className={classNames(style.hrComp_table_wrapper,style.hrComp_table_head)}>
@@ -294,6 +294,9 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
       </div>:
       null
       }
+
+      </div>
+
       
        
     </div>

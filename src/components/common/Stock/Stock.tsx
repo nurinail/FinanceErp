@@ -9,7 +9,7 @@ import type { RootState } from "../../../store/store";
 import { addHistory } from "../../../store/slices/history";
 
 const Stock = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
  
   const inventorData=useSelector((state:RootState)=>state.inventory.inventory,
 shallowEqual);
@@ -46,10 +46,10 @@ shallowEqual);
     dispatch(addHistory(historyItem))
     dispatch(addNewInventor(newInventory));
 
-    reset();
+    // reset();
   };
   
-console.log(inventorData)
+// console.log(inventorData)
   return (
     <div className={style.stockComp}>
       <h2 className={style.stockComp_title}>Anbar İdarəçiliyi</h2>
