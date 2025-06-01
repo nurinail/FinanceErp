@@ -1,0 +1,105 @@
+@import "../../../style/mixin";
+.historyComp {
+  @include d-flex(flex-start, flex-start, column, 1rem);
+  width: 100%;
+  padding: 1rem;
+  &_head {
+    @include d-grid(repeat(4, 1fr), 2rem);
+    width: 100%;
+    &_item {
+      @include d-flex(center, flex-start, row, 1.6rem);
+      border: 2px solid #f5f5f5;
+      border-radius: 1rem;
+      padding: 2.4rem;
+      &_icon {
+        width: 4.8rem;
+        height: 4.8rem;
+        object-fit: cover;
+      }
+      &_text {
+        @include d-flex(flex-start, center, column, 0.8rem);
+        &_title {
+          color: #737375;
+          font-size: 1.6rem;
+        }
+        &_amount {
+          color: #121212;
+          font-size: 2.8rem;
+        }
+      }
+    }
+  }
+  .historyTableComp {
+    width: 100%;
+    @include d-flex(flex-start, flex-start, column, _);
+    border: 1px solid #f5f5f5;
+    border-radius: 1rem;
+    max-height: 45rem;
+    padding: 0.5rem 2rem;
+    &_tabs {
+      width: 100%;
+      @include d-flex(center, space-between, row, _);
+      &_menu {
+        @include d-flex(center, flex-start, row, 1rem);
+        &_item {
+          &_btn {
+            padding: 1rem 1rem;
+            color: #737375;
+            font-size: 1.2rem;
+            border: 1px solid transparent;
+            background-color: transparent;
+          }
+          .historyTableComp_tabs_menu_item_btn:hover {
+            color: #7a00a3;
+            border-bottom: #7a00a3 1px solid;
+          }
+          .active {
+            transition: all 0.7s;
+            color: #7a00a3;
+            border-bottom: #7a00a3 1px solid;
+          }
+        }
+      }
+      &_notife {
+        @include d-flex(center, center, row, 1rem);
+        &_item {
+          font-size: 1.2rem;
+          font-weight: bold;
+          color: #737375;
+        }
+      }
+    }
+    .historyTableComp_tableWrapper {
+      width: 100%;
+      overflow-y: auto;
+      width: 100%;
+      .historyTableComp_table {
+        margin-top: 1rem;
+        width: 100%;
+        border-collapse: collapse;
+        thead,
+        tbody {
+          tr {
+            th,
+            td {
+              text-align: start;
+              padding: 1rem;
+              font-weight: 500;
+            }
+            th {
+              font-size: 1.8rem;
+              color: #737375;
+              background-color: #ede8ee;
+            }
+            td {
+              font-size: 1.2rem;
+            }
+          }
+          tr:nth-child(even) {
+            background-color: #fafafa;
+          }
+        }
+      }
+    }
+  }
+}

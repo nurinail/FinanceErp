@@ -9,8 +9,49 @@
     display: flex; 
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 3rem 1rem 1rem;
+    // padding: 1rem 3rem 1rem 1rem;
+    padding-inline: 4rem;
     border-bottom: 1px solid rgb(44, 4, 4);
+    &_logo{
+        // border: 1px solid red;
+        width: 5rem;
+        height: 5rem;
+    }
+    &_nav{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        &_icon{
+            font-size: 4rem;
+        }
+        &_user{
+            position: relative;
+            &_img{
+                width: 5rem;
+                height: 5rem;
+                object-fit: cover;
+            }
+            &_circle{
+                position: absolute;
+                background-color: white;
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                right: 0;
+                bottom: 10%;
+                transform: translate(0%,0%);
+                &_item{
+                    width: .75rem;
+                    height: .75rem;
+                    background-color: rgb(30, 198, 1);
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
 }
 .appFooter{
     display: flex;

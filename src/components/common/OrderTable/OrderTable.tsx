@@ -1,4 +1,3 @@
-import React from "react";
 import classNames from "classnames";
 import style from "./orderTable.module.scss"
 import OrderTableItem from "./OrderTableItem";

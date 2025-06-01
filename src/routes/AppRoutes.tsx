@@ -5,11 +5,12 @@ import Order from "../components/common/Order/Order";
 import Finance from "../components/common/CashAccount/Finace";
 import Stock from "../components/common/Stock/Stock";
 import HR from "../components/common/HR/HR";
+import History from "../components/common/History/History";
 
 const AppRoutes = () => {
   return <div>
     <Routes>
-      <Route path="/" element={<Home/>}></Route>
+      <Route path="/" element={<History/>}></Route>
       <Route path="/order" element={<Order/>}></Route>
       <Route path="/finance" element={<Finance/>}></Route>
       <Route path="/inventor" element={<Stock/>}></Route>

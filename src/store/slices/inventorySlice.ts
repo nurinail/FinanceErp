@@ -5,21 +5,22 @@ import type { InventoryInitialState, InventoryType } from '../../types/types'
 const initialState: InventoryInitialState = {
     inventory:[
       {
-id:11,
-    name:"Lagonda",//
-    category:"sdv",//
-    count:3,//
-    prices:4,//
-    total:12,
-    date:"12-12-2022",//
-    balance:"string",//
-    desc:"sdfdsfvfb",
+            id:1111,
+    name:"stringnumber",//
+    category:"stringnumber",//
+    count:12,//
+    prices:12,//
+    total:144,
+    date:"stringnumber",//
+    method:"stringnumber",//
+    desc:"stringnumber",
       },
     ],
+
 }
 
 export const counterSlice = createSlice({
-  name: 'inventory',
+  name: 'inventory', 
   initialState,
   reducers: {
     addNewInventor:(state:InventoryInitialState,action:PayloadAction<InventoryType>)=>{

@@ -2,37 +2,30 @@ import classNames from "classnames";
 import style from "./finance.module.scss";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
-import { useEffect } from "react";
+import FinanceHistoryItem from "./FinanceHistoryItem";
 
 const Finance = () => {
-  const inventorPurchases=useSelector((state:RootState)=>state.inventory.inventory);
-  let totalPurchases:number=0;
-  console.log(inventorPurchases)
-  useEffect(()=>{
-    for (let index = 0; index < inventorPurchases.length-1; index++) {
-      totalPurchases+= inventorPurchases[index].total;
-    }
-    console.log(totalPurchases)
-  },[inventorPurchases.length]);
+const cashAmount=useSelector((state:RootState)=>state.finance.cashAmount);
+const bankAmount=useSelector((state:RootState)=>state.finance.bankAmount);
+const debitorAmount=useSelector((state:RootState)=>state.finance.debitorAmount);
+const liabilityAmount=useSelector((state:RootState)=>state.finance.liabilityAmount);
+
+const historyData=useSelector((state:RootState)=>state.history.history);
   return (
     <div className={style.financeComp}>
       <h2 className={style.financeComp_title}>Maliyyə Məlumatları</h2>
       <div className={style.financeComp_info}>
         <div className={style.financeComp_info_item}>
           <h3 className={style.financeComp_info_item_title}>Nağd pul</h3>
-          <h2 className={style.financeComp_info_item_amount}>14440.00 AZN</h2>
+          <h2 className={style.financeComp_info_item_amount}>{cashAmount} AZN</h2>
         </div>
         <div className={style.financeComp_info_item}>
           <h3 className={style.financeComp_info_item_title}>Banks Hesabı</h3>
-          <h2 className={style.financeComp_info_item_amount}>14440.00 AZN</h2>
+          <h2 className={style.financeComp_info_item_amount}>{bankAmount} AZN</h2>
         </div>
         <div className={style.financeComp_info_item}>
           <h3 className={style.financeComp_info_item_title}>Debitor</h3>
-          <h2 className={style.financeComp_info_item_amount}>14440.00 AZN</h2>
-        </div>
-        <div className={style.financeComp_info_item}>
-          <h3 className={style.financeComp_info_item_title}>Alış</h3>
-          <h2 className={style.financeComp_info_item_amount}>{totalPurchases} AZN</h2>
+          <h2 className={style.financeComp_info_item_amount}>{debitorAmount} AZN</h2>
         </div>
         <div className={style.financeComp_info_item}>
           <h3
@@ -49,7 +42,7 @@ const Finance = () => {
               style.liability
             )}
           >
-            14440.00 AZN
+            {liabilityAmount} AZN
           </h2>
         </div>
       </div>
@@ -92,36 +85,16 @@ const Finance = () => {
           <thead>
             <tr className={style.thead_row}>
               <th>Tarix</th>
+              <th>Ad</th>
               <th>Təsvir</th>
               <th>Məbləğ</th>
-              <th>Növ</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>25-05-2025</td>
-              <td>Nağd gəlir</td>
-              <td>1000 AZN</td>
-              <td>Gəlir</td>
-            </tr>
-            <tr>
-              <td>25-05-2025</td>
-              <td>Nağd gəlir</td>
-              <td>1000 AZN</td>
-              <td>Gəlir</td>
-            </tr>
-            <tr>
-              <td>25-05-2025</td>
-              <td>Nağd gəlir</td>
-              <td>1000 AZN</td>
-              <td>Gəlir</td>
-            </tr>
-            <tr>
-              <td>25-05-2025</td>
-              <td>Nağd gəlir</td>
-              <td>1000 AZN</td>
-              <td>Gəlir</td>
-            </tr>
+            {historyData&&historyData.map((item)=>(
+              item.desc==="Yeni İşçi qəbulu"?null:
+              <FinanceHistoryItem key={item.id} item={item}/>
+            ))}
           </tbody>
         </table>
       </div>

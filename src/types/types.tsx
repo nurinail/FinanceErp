@@ -6,7 +6,7 @@ export interface InventoryType{
     prices:number;//
     total:number;
     date:string;//
-    balance:string;//
+    method:string;//
     desc:string;
 }
 export interface InventoryInitialState{
@@ -14,10 +14,10 @@ export interface InventoryInitialState{
 }
 export interface HistoryType{
     id:number;
-    desc:string;
+    desc:string; 
     date:string;
     name:string;
-    balance:string;
+    method:string;
     total:number;
 }
 export interface HistoryInitialState{
@@ -45,7 +45,7 @@ export interface OrderType{
     ordernumber:number;
     customer:string;//
     product:string;//
-    payment:string;//
+    method:string;//
     desc:string;
     date:string;//
     total:number;
@@ -61,8 +61,18 @@ export interface CustomerType{
     id:number;
     name:string;
     contract:string;
+    document:string;
     date:string;
 }
-
+export interface FinanceInitialState{
+    cashAmount:number;
+    bankAmount:number;
+    debitorAmount:number;
+    liabilityAmount:number;
+}
+export interface PaymentMetodType{
+    amount:number;
+    method:string;
+}
 
 

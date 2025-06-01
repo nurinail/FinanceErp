@@ -5,12 +5,11 @@
     position: fixed;
     transform: translate(-50%,-50%);
     transition: all 2s;
-    // opacity: 1;
     left: 50%;
     top: 40%;
     border-radius: 1rem;
     padding: 2rem;
-    background-color: rgba($color: #235383, $alpha: .2);
+    background-color: rgba($color: #235383, $alpha: .3);
     &_title{
         font-size: 2.4rem;
         align-self: center;

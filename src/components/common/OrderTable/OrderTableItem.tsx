@@ -1,5 +1,3 @@
-import React from "react";
-import classNames from "classnames";
 import style from "./orderTable.module.scss";
 import type { OrderType } from "../../../types/types";
 import { useDispatch } from "react-redux";
@@ -17,7 +15,7 @@ const OrderTableItem = ({order,index}:OrderPrompt) => {
       <li className={style.orderTable_sect_item}>{index}</li>
       <li className={style.orderTable_sect_item}>{order.ordernumber}</li>
       <li className={style.orderTable_sect_item}>{order.product}</li>
-      <li className={style.orderTable_sect_item}>{order.payment}</li>
+      <li className={style.orderTable_sect_item}>{order.method}</li>
       <li className={style.orderTable_sect_item}>{order.date}</li>
       <li className={style.orderTable_sect_item}>{order.total} AZN</li>
       <li className={style.orderTable_sect_item}>

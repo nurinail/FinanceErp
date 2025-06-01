@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useForm} from "react-hook-form";
 import classNames from "classnames";
 import style from "./hr.module.scss";
@@ -42,11 +42,11 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
     date:data.date,
     total:Number(data.salary),
     name:data.name,
-    balance:"",
+    method:"",
   }
   dispatch(addWorker(newWorker));
   dispatch(addHistory(historyWorkerItem));
-  // reset();
+  reset();
 
 
 }

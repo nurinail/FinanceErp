@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import classNames from "classnames";
 import style from "./order.module.scss";
 import NewCustomer from "./../newCustomer/NewCustomer";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
 import { useForm } from "react-hook-form";
-import type { HistoryType, OrderType } from "../../../types/types";
+import type { HistoryType, OrderType, PaymentMetodType } from "../../../types/types";
 import { addOrder } from "../../../store/slices/orderSlice";
 import { addHistory } from "../../../store/slices/history";
 import OrderTable from "../OrderTable/OrderTable";
+import { handleCalculate } from "../../../store/slices/finance";
 
 const Order = () => {
   const dispatch=useDispatch();
   const [isModalCustomer,setIsModalCustomer]=useState<boolean>(false);
   const customers=useSelector((state:RootState)=>state.order.customers);
   const inventors=useSelector((state:RootState)=>state.inventory.inventory)
+  const cashAmount=useSelector((state:RootState)=>state.finance.cashAmount);
+const bankAmount=useSelector((state:RootState)=>state.finance.bankAmount);
+const debitorAmount=useSelector((state:RootState)=>state.finance.debitorAmount);
+const liabilityAmount=useSelector((state:RootState)=>state.finance.liabilityAmount);
 
   const {
       register,
@@ -26,7 +31,7 @@ const Order = () => {
       defaultValues:{
         customer:"",
         product:"",
-        payment:"",
+        method:"",
       }
     });
     const onSubmit=(data:Omit<OrderType,"id"|"ordernumber"|"desc"|"total">)=>{
@@ -40,18 +45,26 @@ const Order = () => {
         count:Number(data.count),
         prices:Number(data.prices),
         total:Number(data.count)*Number(data.prices),
-      }
+      };
       const historyOrder:HistoryType={
         id:orderId,
         desc:`${data.product} satışı`,
         date:data.date,
         name:data.product,
-        balance:data.payment,
+        method:data.method,
         total:Number(data.count)*Number(data.prices),
 
-      }
+      };
+       const itemForFinance:PaymentMetodType={
+          amount:Number(data.count)*Number(data.prices),
+          method:data.method
+      
+        }
+        reset();
       dispatch(addOrder(orderItem));
       dispatch(addHistory(historyOrder));
+      dispatch(handleCalculate(itemForFinance));
+      console.log(bankAmount,cashAmount,debitorAmount,liabilityAmount)
 
     }
 
@@ -97,7 +110,7 @@ const Order = () => {
           <p style={{color:"red"}}>{errors.customer?.message}</p>
         </div>
          <div className={style.orderComp_form_item}>
-          <label className={style.orderComp_form_item_label} htmlFor="payment">
+          <label className={style.orderComp_form_item_label} htmlFor="method">
             Məhsul
           </label>
           <select
@@ -169,13 +182,13 @@ const Order = () => {
         </div>
         
         <div className={style.orderComp_form_item}>
-          <label className={style.orderComp_form_item_label} htmlFor="payment">
+          <label className={style.orderComp_form_item_label} htmlFor="method">
             Ödəniş Metodu
           </label>
           <select
             className={style.orderComp_form_item_select}
-            id="payment"
-            {...register("payment", {
+            id="method"
+            {...register("method", {
                 required: {
                   value: true,
                   message: "Mədaxil formasını seçin!",
@@ -183,11 +196,11 @@ const Order = () => {
               })}
           >
             <option value="" disabled>---</option>
-            <option value="nağd">Nağd</option>
-            <option value="nisyə">Nisyə</option>
-            <option value="bank hesabı">Bank hesabı</option>
+            <option value="cash-in">Nağd Mədaxil</option>
+            <option value="bank-in">Bank Hesabına Mədaxil</option>
+            <option value="debitor-in">Nisyə Satış</option>
           </select>
-          <p style={{color:"red"}}>{errors.payment?.message}</p>
+          <p style={{color:"red"}}>{errors.method?.message}</p>
         </div>
         <div className={style.orderComp_form_item}>
           <label className={style.orderComp_form_item_label} htmlFor="notes">

@@ -2,11 +2,12 @@ import classNames from "classnames";
 import { useForm } from "react-hook-form";
 import style from "./stock.module.scss";
 import StockTable from "./StockTable";
-import type { HistoryType, InventoryType } from "../../../types/types";
+import type { HistoryType, InventoryType, PaymentMetodType } from "../../../types/types";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { addNewInventor } from "../../../store/slices/inventorySlice";
 import type { RootState } from "../../../store/store";
 import { addHistory } from "../../../store/slices/history";
+import { handleCalculate } from "../../../store/slices/finance";
 
 const Stock = () => {
   const dispatch = useDispatch(); 
@@ -22,7 +23,7 @@ shallowEqual);
     mode:"onSubmit",
     defaultValues: {
     category: "",  
-    balance: "",   
+    method: "",   
   },
   });
   const onSubmit = (data: Omit<InventoryType, "id" | "desc">) => {
@@ -40,16 +41,20 @@ shallowEqual);
     desc: "Məhsul Alışı",
     date: data.date,
     name: data.name,
-    balance: data.balance,
+    method: data.method,
     total: Number(data.count) * Number(data.prices),
   };
-    dispatch(addHistory(historyItem))
-    dispatch(addNewInventor(newInventory));
+  const itemForFinance:PaymentMetodType={
+    amount:Number(data.count) * Number(data.prices),
+    method:data.method
 
-    // reset();
+  }
+    dispatch(addHistory(historyItem));
+    dispatch(addNewInventor(newInventory));
+    dispatch(handleCalculate(itemForFinance));
+    reset();
   };
   
-// console.log(inventorData)
   return (
     <div className={style.stockComp}>
       <h2 className={style.stockComp_title}>Anbar İdarəçiliyi</h2>
@@ -146,18 +151,18 @@ shallowEqual);
           </label>
           <select
             className={style.stockComp_form_item_select}
-            id="balance"
-            {...register("balance", { required: {
+            id="method"
+            {...register("method", { required: {
               value:true,
               message:"Məxaric formasını seçin!"
             } })}
           >
             <option value="" disabled>---</option>
-            <option value="nağd">nağd məxaric</option>
-            <option value="bank hesabı">bank hesabı</option>
-            <option value="borc">borc</option>
+            <option value="cash-out">nağd məxaric</option>
+            <option value="bank-out">bank hesabı</option>
+            <option value="loan-in">borc</option>
           </select>
-           <span style={{color:"red"}}>{errors.balance?.message}</span>
+           <span style={{color:"red"}}>{errors.method?.message}</span>
         </div>
 
         <button className={style.stockComp_form_submitBtn} type="submit">
