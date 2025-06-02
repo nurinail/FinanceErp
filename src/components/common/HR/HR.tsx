@@ -39,6 +39,7 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
   const historyWorkerItem:HistoryType={
     id:workerId,
     desc:"Yeni İşçi qəbulu",
+    transaction:"İşçi qəbulu",
     date:data.date,
     total:Number(data.salary),
     name:data.name,

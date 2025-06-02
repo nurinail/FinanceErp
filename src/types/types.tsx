@@ -19,6 +19,7 @@ export interface HistoryType{
     name:string;
     method:string;
     total:number;
+    transaction:string;
 }
 export interface HistoryInitialState{
     history:HistoryType[];
@@ -69,10 +70,18 @@ export interface FinanceInitialState{
     bankAmount:number;
     debitorAmount:number;
     liabilityAmount:number;
+    income:number;
+    expenses:number;
 }
 export interface PaymentMetodType{
     amount:number;
     method:string;
 }
 
-
+export interface LoginType{
+    username:string;
+    password:string;
+}
+export interface LoginSignUpInitialState{
+    users:LoginType[];
+}

@@ -4,6 +4,7 @@ import  workerSlice  from './slices/workerSlice';
 import  historySlice  from './slices/history';
 import  orderSlice from './slices/orderSlice';
 import  financeSlice from './slices/finance';
+import  loginSlice  from './slices/login';
 export const store = configureStore({
   reducer: {
     inventory:inventorySlice,
@@ -11,6 +12,7 @@ export const store = configureStore({
     history:historySlice,
     order:orderSlice,
     finance:financeSlice,
+    login:loginSlice,
   },
 })
 

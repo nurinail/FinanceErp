@@ -9,13 +9,14 @@ import { GrDocumentPerformance } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 
 const SideMenu = () => {
-    const navigate=useNavigate()
+    const navigate=useNavigate();
     const items=[
         {
             label:"Ana Səhifə",
-            key:"/",
+            key:"/history",
             icon:<IoHomeSharp />,
         },
+       
         {
             label:"Satış",
             key:"/order",
@@ -36,6 +37,8 @@ const SideMenu = () => {
             key:"/hr",
             icon:<IoIosPeople />,
         },
+        
+        
     ]
   
    return  <Menu className="sideMenu" items={items} onClick={(item)=>

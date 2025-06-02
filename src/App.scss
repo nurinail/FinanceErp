@@ -1,3 +1,4 @@
+@import "./style/mixin";
 .app{
     width: 100%;
     height: 100vh;
@@ -5,15 +6,12 @@
     grid-template-rows: 1fr 8fr;
 }
 .appHeader{
-    /* height: 5rem; */
     display: flex; 
     justify-content: space-between;
     align-items: center;
-    // padding: 1rem 3rem 1rem 1rem;
     padding-inline: 4rem;
     border-bottom: 1px solid rgb(44, 4, 4);
     &_logo{
-        // border: 1px solid red;
         width: 5rem;
         height: 5rem;
     }
@@ -21,6 +19,39 @@
         display: flex;
         align-items: center;
         gap: 1rem;
+        position: relative;
+        &_modal{
+            transition: all .7s;
+            border-radius: 1rem;
+            padding: 2rem ;
+            position: absolute;
+            z-index: 1;
+            background-color: rgb(224, 199, 145);
+            @include d-flex(center,center,column,1rem);
+            &_title{
+                width: 100%;
+                text-align: center;
+                font-size: 1.4rem
+            }
+            &_buttons{
+                @include d-flex(center,center,row,.6rem);
+                &_item{
+                    padding: .4rem 1rem;
+                    border-radius: .4rem;
+                    color: white;
+                    background-color: green;
+                }
+                .appHeader_nav_modal_buttons_item:last-child{
+                    background-color: red;
+                }
+            }
+        }
+        .none_active{
+            display: none;
+        }
+        &_logout{
+            font-size: 2rem;
+        }
         &_icon{
             font-size: 4rem;
         }

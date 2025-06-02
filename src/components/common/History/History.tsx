@@ -4,7 +4,15 @@ import saving from "../../../assets/image/saving.svg";
 import income from "../../../assets/image/income.svg";
 import expenses from "../../../assets/image/expenses.svg";
 import HistoryTable from "./HistoryTable";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../store/store";
 const History = () => {
+
+  const cashAmount=useSelector((state:RootState)=>state.finance.cashAmount);
+const bankAmount=useSelector((state:RootState)=>state.finance.bankAmount);
+const debitorAmount=useSelector((state:RootState)=>state.finance.debitorAmount);
+const incomeAmount=useSelector((state:RootState)=>state.finance.income);
+const expensesAmount=useSelector((state:RootState)=>state.finance.expenses);
   return (
     <div className={style.historyComp}>
       <div className={style.historyComp_head}>
@@ -19,7 +27,7 @@ const History = () => {
               Balans
             </span>
             <h2 className={style.historyComp_head_item_text_amount}>
-              $12345.00
+              AZN {cashAmount+bankAmount}
             </h2>
           </div>
         </div>
@@ -31,10 +39,10 @@ const History = () => {
           />
           <div className={style.historyComp_head_item_text}>
             <span className={style.historyComp_head_item_text_title}>
-              Saving
+              Debitor
             </span>
             <h2 className={style.historyComp_head_item_text_amount}>
-              $1223.00
+              AZN {debitorAmount}
             </h2>
           </div>
         </div>
@@ -49,7 +57,7 @@ const History = () => {
               Gəlir
             </span>
             <h2 className={style.historyComp_head_item_text_amount}>
-              $12985.00
+              AZN {incomeAmount}
             </h2>
           </div>
         </div>
@@ -64,7 +72,7 @@ const History = () => {
               Xərclər
             </span>
             <h2 className={style.historyComp_head_item_text_amount}>
-              $1245.00
+              AZN {expensesAmount}
             </h2>
           </div>
         </div>

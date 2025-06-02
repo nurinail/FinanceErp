@@ -26,7 +26,7 @@ shallowEqual);
     method: "",   
   },
   });
-  const onSubmit = (data: Omit<InventoryType, "id" | "desc">) => {
+  const onSubmit = (data: Omit<InventoryType, "id" | "desc" |"finance">) => {
     const timeId=Date.now();
     const newInventory: InventoryType = {
       ...data,
@@ -42,6 +42,7 @@ shallowEqual);
     date: data.date,
     name: data.name,
     method: data.method,
+    transaction:"xərc",
     total: Number(data.count) * Number(data.prices),
   };
   const itemForFinance:PaymentMetodType={

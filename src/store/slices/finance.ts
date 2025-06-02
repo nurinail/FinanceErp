@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { FinanceInitialState, PaymentMetodType } from "../../types/types";
-import { useSelector } from "react-redux";
-import type { RootState } from "../store";
 
 
 
@@ -11,6 +9,8 @@ const initialState: FinanceInitialState = {
   bankAmount: 0,
   debitorAmount: 0,
   liabilityAmount: 0,
+  income:0,
+  expenses:0,
 };
 
 export const financeSlice = createSlice({
@@ -20,22 +20,27 @@ export const financeSlice = createSlice({
     handleCalculate:(state:FinanceInitialState,action:PayloadAction<PaymentMetodType>)=>{
         if(action.payload.method==="cash-in"){
             state.cashAmount+=action.payload.amount;
+            state.income+=action.payload.amount;
             return
         }
         if(action.payload.method==="bank-in"){
             state.bankAmount+=action.payload.amount;
+            state.income+=action.payload.amount;
             return
         }
         if(action.payload.method==="debitor-in"){
             state.debitorAmount+=action.payload.amount;
+            state.income+=action.payload.amount;
             return
         }
         if(action.payload.method==="cash-out"){
             state.cashAmount-=action.payload.amount;
+            state.expenses+=action.payload.amount;
             return
         }
         if(action.payload.method==="bank-out"){
             state.bankAmount-=action.payload.amount;
+            state.expenses+=action.payload.amount;
             return
         }
         if(action.payload.method==="loan-in"){

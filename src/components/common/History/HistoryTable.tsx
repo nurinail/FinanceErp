@@ -5,11 +5,27 @@ import HistoryTableItem from "./HistoryTableItem";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
 import type { HistoryType } from "../../../types/types";
-const tabs: string[] = ["Hamısı", "Saving", "Gəlirlər", "Xərclər"];
+const tabs: string[] = ["Hamısı", "Gəlirlər", "Xərclər"];
 
 const HistoryTable = () => {
-    const historyData=useSelector((state:RootState)=>state.history.history)
+    const historyData=useSelector((state:RootState)=>state.history.history);
+  const [valueHistory,setValueHistory]=useState<string>("Hamısı");
   const [isTabs, setIsTabs] = useState<string>("Hamısı");
+  const handleFilter=(item:any)=>{
+    setIsTabs(item);
+    setValueHistory(item);
+  }
+  const filterData=historyData.filter((item)=>{
+    if(valueHistory==="Hamısı"){
+      return historyData
+    }if(valueHistory==="Gəlirlər"){
+      return item.transaction==="gəlir"
+    }if(valueHistory==="Xərclər"){
+      return item.transaction==="xərc"
+    }
+  })
+  
+
 
 
   return (
@@ -19,7 +35,7 @@ const HistoryTable = () => {
           {tabs.map((item) => (
             <li key={item} className={style.historyTableComp_tabs_menu_item}>
               <button
-                onClick={() => setIsTabs(item)}
+                onClick={()=>handleFilter(item) }
                 className={classNames(
                   style.historyTableComp_tabs_menu_item_btn,
                   { [style.active]: isTabs === item }
@@ -43,13 +59,14 @@ const HistoryTable = () => {
                 <th>Tarix</th>
                 <th>Tipi</th>
                 <th>Təsvir</th>
+                <th>Əməliyyat</th>
                 <th>Məbləğ</th>
             </tr>
         </thead>
         <tbody>
             {
-                historyData.map((item:HistoryType)=>(
-                    <HistoryTableItem key={item.id} item={item}/>
+                filterData.map((item:HistoryType)=>(
+                    <HistoryTableItem  key={item.id} item={item}/>
                 ))
             }
         </tbody>

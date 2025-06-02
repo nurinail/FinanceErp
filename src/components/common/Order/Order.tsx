@@ -51,6 +51,7 @@ const liabilityAmount=useSelector((state:RootState)=>state.finance.liabilityAmou
         desc:`${data.product} satışı`,
         date:data.date,
         name:data.product,
+        transaction:"gəlir",
         method:data.method,
         total:Number(data.count)*Number(data.prices),
 
