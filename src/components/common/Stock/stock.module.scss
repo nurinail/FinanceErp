@@ -4,6 +4,7 @@
   background-color: #f5f6fa;
   width: 100%;
   padding: 1rem;
+  // border: 1px solid red;
   &_title {
     width: 100%;
     padding: 2rem;
@@ -61,7 +62,6 @@
         text-align: start;
         &_text{
           padding-block: 1rem;
-          // border: 1px solid red;
           width: 100%;
           font-size: 1.4rem;
         }

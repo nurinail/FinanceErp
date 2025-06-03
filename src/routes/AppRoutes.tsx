@@ -1,6 +1,4 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "../pages/Home/Home";
 import Order from "../components/common/Order/Order";
 import Finance from "../components/common/CashAccount/Finace";
 import Stock from "../components/common/Stock/Stock";
@@ -10,7 +8,7 @@ import LoginSignUp from "../pages/Login/LoginSignUp";
 import SignUp from "../pages/Login/SignUp";
 
 const AppRoutes = () => {
-  return <div>
+  return <div style={{width:"100%",height:"90vh",overflow:"auto"}}>
     <Routes>
       <Route path="/history" element={<History/>}></Route>
       <Route path="/signup" element={<SignUp/>}></Route>

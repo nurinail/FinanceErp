@@ -1,20 +1,21 @@
 @import "./../../../style/mixin";
 .orderComp {
   @include d-flex(flex-start, flex-start, row, 1rem);
-  width: 99%;
+  width: 100%;
   border-radius: 2rem;
   margin-top: 2rem;
-  padding-bottom: 9rem;
-  height: 100%;
-  flex: 1;
+  height: 90%;
   &_title {
       color: black;
       font-size: 3rem;
     }
-    &_form {
+    &_form { 
+      height: 100%;
+      overflow: auto;
         padding: 2rem;
+        border-right: 1px solid #f4f4f4;
         @include d-flex(flex-start, flex-start, column, 2rem);
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     width: 100%;
     &_item {
       @include d-flex(flex-start, flex-start, column, 0.4rem);

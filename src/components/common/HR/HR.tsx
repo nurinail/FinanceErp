@@ -1,5 +1,5 @@
-import  { useState } from "react";
-import { useForm} from "react-hook-form";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import style from "./hr.module.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,47 +10,54 @@ import { addHistory } from "../../../store/slices/history";
 import type { RootState } from "../../../store/store";
 
 const HR = () => {
-  const dispatch=useDispatch();
-  const workersData=useSelector((state:RootState)=>state.worker.workers)
- const [showWorkers,setShowWorkers]=useState<boolean>(false)
+  const dispatch = useDispatch();
+  const workersData = useSelector((state: RootState) => state.worker.workers);
+  const [showWorkers, setShowWorkers] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<WorkersType>({
-    mode:"onSubmit",
-    defaultValues:{
-      department:"",
-      place:"",
-    }
+    mode: "onSubmit",
+    defaultValues: {
+      department: "",
+      place: "",
+    },
   });
-  
-const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
-  console.log(data);
-  const workerId=Date.now();
-  const newWorker:WorkersType={
-    ...data,
-    number:Number(data.number),
-    salary:Number(data.salary),
-    id:workerId,
-    desc:"Yeni İşçi Əlavə edildi"
-  }
-  const historyWorkerItem:HistoryType={
-    id:workerId,
-    desc:"Yeni İşçi qəbulu",
-    transaction:"İşçi qəbulu",
-    date:data.date,
-    total:Number(data.salary),
-    name:data.name,
-    method:"",
-  }
-  dispatch(addWorker(newWorker));
-  dispatch(addHistory(historyWorkerItem));
-  reset();
 
+  const onSubmit = (data: Omit<WorkersType, "id" | "desc" | "">) => {
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const year = currentDate.getFullYear();
 
-}
+    const hours = String(currentDate.getHours()).padStart(2, "0");
+    const minutes = String(currentDate.getMinutes()).padStart(2, "0");
+
+    const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
+    const workerId = Date.now();
+    const newWorker: WorkersType = {
+      ...data,
+      number: Number(data.number),
+      salary: Number(data.salary),
+      id: workerId,
+      desc: "Yeni İşçi Əlavə edildi",
+      date:formattedDate,
+    };
+    const historyWorkerItem: HistoryType = {
+      id: workerId,
+      desc: "",
+      transaction: "İşçi qəbulu",
+      date: formattedDate,
+      total: Number(data.salary),
+      name: data.name,
+      method: "",
+    };
+    dispatch(addWorker(newWorker));
+    dispatch(addHistory(historyWorkerItem));
+    reset();
+  };
   return (
     <div className={style.container}>
       <div className={style.hrComp}>
@@ -59,11 +66,9 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
           <div className={style.hrComp_form_input}>
             <label
               htmlFor="fullnameInput"
-              className={style.hrComp_form_input_label}
-            >
+              className={style.hrComp_form_input_label}>
               Ad və Soyad
             </label>
-
             <input
               id="fullnameInput"
               type="text"
@@ -71,14 +76,15 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
                 required: {
                   value: true,
                   message: "Xananı tam doldurun!",
-                },minLength:{
-                  value:6,
-                  message:"Ad və Soyad 6 simvoldan az ola bilməz!"
-                }
+                },
+                minLength: {
+                  value: 6,
+                  message: "Ad və Soyad 6 simvoldan az ola bilməz!",
+                },
               })}
               className={style.hrComp_form_input_item}
             />
-            <p style={{color:"red"}}>{errors.name?.message}</p>
+            <p style={{ color: "red" }}>{errors.name?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -100,7 +106,7 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               })}
               className={style.hrComp_form_input_item}
             />
-            <p style={{color:"red"}}>{errors.email?.message}</p>
+            <p style={{ color: "red" }}>{errors.email?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -117,14 +123,15 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
                 required: {
                   value: true,
                   message: "Xananı tam doldurun!",
-                },minLength:{
-                  value:10,
-                  message:"Nömrəni düzgün daxil et!"
-                }
+                },
+                minLength: {
+                  value: 10,
+                  message: "Nömrəni düzgün daxil et!",
+                },
               })}
               className={style.hrComp_form_input_item}
             />
-            <p style={{color:"red"}}>{errors.number?.message}</p>
+            <p style={{ color: "red" }}>{errors.number?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -141,14 +148,15 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
                 required: {
                   value: true,
                   message: "Xananı tam doldurun!",
-                },minLength:{
-                  value:3,
-                  message:"Vəzifə adı 3 simvoldan az ola bilməz!"
-                }
+                },
+                minLength: {
+                  value: 3,
+                  message: "Vəzifə adı 3 simvoldan az ola bilməz!",
+                },
               })}
               className={style.hrComp_form_input_item}
             />
-            <p style={{color:"red"}}>{errors.position?.message}</p>
+            <p style={{ color: "red" }}>{errors.position?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -165,14 +173,16 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
                 required: {
                   value: true,
                   message: "Xananı tam doldurun!",
-                },min:{
-                  value:400,
-                  message:"Minimum Əmək Haqqına görə, ƏməkHaqqı 400 manatdan az ola bilməz!"
-                }
+                },
+                min: {
+                  value: 400,
+                  message:
+                    "Minimum Əmək Haqqına görə, ƏməkHaqqı 400 manatdan az ola bilməz!",
+                },
               })}
               className={style.hrComp_form_input_item}
             />
-            <p style={{color:"red"}}>{errors.salary?.message}</p>
+            <p style={{ color: "red" }}>{errors.salary?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -193,7 +203,7 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               })}
               className={style.hrComp_form_input_item}
             />
-            <p style={{color:"red"}}>{errors.date?.message}</p>
+            <p style={{ color: "red" }}>{errors.date?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -234,7 +244,7 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               <option value="İdarəetmə">İdarəetmə</option>
               <option value="Daxili Nəzarət">Daxili Nəzarət</option>
             </select>
-            <p style={{color:"red"}}>{errors.department?.message}</p>
+            <p style={{ color: "red" }}>{errors.department?.message}</p>
           </div>
 
           <div className={style.hrComp_form_input}>
@@ -254,52 +264,56 @@ const onSubmit=(data:Omit<WorkersType,"id" | "desc"|"">)=>{
               })}
               className={style.hrComp_form_input_item}
             >
-              <option value="">
-                ---
-              </option>
+              <option value="">---</option>
               <option value="Ofis">Ofis</option>
               <option value="Uzaqdan">Uzaqdan</option>
               <option value="Hibrid">Hibrid</option>
             </select>
-            <p style={{color:"red"}}>{errors.place?.message}</p>
+            <p style={{ color: "red" }}>{errors.place?.message}</p>
           </div>
 
           <button type="submit" className={style.hrComp_form_submit}>
             Əlavə Et
           </button>
-          <button onClick={()=>setShowWorkers(prev=>!prev)} type="button" className={style.hrComp_form_submit}>
-           Siyahını {showWorkers?"gizlət":"göstər"}
+          <button
+            onClick={() => setShowWorkers((prev) => !prev)}
+            type="button"
+            className={style.hrComp_form_submit}
+          >
+            Siyahını {showWorkers ? "gizlət" : "göstər"}
           </button>
-          
         </form>
       </div>
-      <div >
-      {
-        showWorkers?<div className={style.hrComp_table}>
-        <ul className={classNames(style.hrComp_table_wrapper,style.hrComp_table_head)}>
-          <li className={style.hrComp_table_wrapper_item}>№</li>
-          <li className={style.hrComp_table_wrapper_item}>Ad Soyad</li>
-          <li className={style.hrComp_table_wrapper_item}>Email</li>
-          <li className={style.hrComp_table_wrapper_item}>Telefon Nömrəsi</li>
-          <li className={style.hrComp_table_wrapper_item}>Vəzifə</li>
-          <li className={style.hrComp_table_wrapper_item}>Maaş</li>
-          <li className={style.hrComp_table_wrapper_item}>Başlama Tarixi</li>
-          <li className={style.hrComp_table_wrapper_item}>Departament</li>
-          <li className={style.hrComp_table_wrapper_item}>Yeri</li>
-          <li className={style.hrComp_table_wrapper_item}>Əməliyyat</li>
-        </ul>
-      {workersData.map((item:WorkersType,index:number)=>(
-        <HrTable key={item.id} index={index+1} worker={item}/>
-      ))}
-
-      </div>:
-      null
-      }
-
+      <div>
+        {showWorkers ? (
+          <div className={style.hrComp_table}>
+            <ul
+              className={classNames(
+                style.hrComp_table_wrapper,
+                style.hrComp_table_head
+              )}
+            >
+              <li className={style.hrComp_table_wrapper_item}>№</li>
+              <li className={style.hrComp_table_wrapper_item}>Ad Soyad</li>
+              <li className={style.hrComp_table_wrapper_item}>Email</li>
+              <li className={style.hrComp_table_wrapper_item}>
+                Telefon Nömrəsi
+              </li>
+              <li className={style.hrComp_table_wrapper_item}>Vəzifə</li>
+              <li className={style.hrComp_table_wrapper_item}>Maaş</li>
+              <li className={style.hrComp_table_wrapper_item}>
+                Başlama Tarixi
+              </li>
+              <li className={style.hrComp_table_wrapper_item}>Departament</li>
+              <li className={style.hrComp_table_wrapper_item}>Yeri</li>
+              <li className={style.hrComp_table_wrapper_item}>Əməliyyat</li>
+            </ul>
+            {workersData.map((item: WorkersType, index: number) => (
+              <HrTable key={item.id} index={index + 1} worker={item} />
+            ))}
+          </div>
+        ) : null}
       </div>
-
-      
-       
     </div>
   );
 };

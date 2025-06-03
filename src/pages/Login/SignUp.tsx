@@ -116,10 +116,10 @@ const SignUp = () => {
               {isCorrectPassword?<p style={{color:"red"}}>Təkrar Şifrə Səhvdir</p>:null}
             </div>
             {isUserRepeat?<p style={{width:"100%", textAlign:"center"}} className="isUserRepeatt">Belə hesab mövcuddur</p>:null}
+            <Link style={{color:"white"}} to={"/"}>Hesabın var?</Link>
             <button
               className={classNames(style.loginSignUp_box_form_btn,style.signUp_box_form_btn)}
-              type="submit"
-            >
+              type="submit">
               Hesab Yarat
             </button>
           </form>

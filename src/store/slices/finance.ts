@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { FinanceInitialState, PaymentMetodType } from "../../types/types";
+import type { DepositeType, FinanceInitialState, PaymentMetodType } from "../../types/types";
 
 
 
@@ -47,10 +47,20 @@ export const financeSlice = createSlice({
             state.liabilityAmount+=action.payload.amount;
             return
         }
+    },
+    addDeposite:(state:FinanceInitialState,action:PayloadAction<DepositeType>)=>{
+        if(action.payload.method==="bank-in"){
+            state.bankAmount+=action.payload.amount;
+            return
+        }
+        if(action.payload.method==="cash-in"){
+            state.cashAmount+=action.payload.amount;
+            return
+        }
     }
   },
 });
 
-export const {handleCalculate} = financeSlice.actions;
+export const {handleCalculate,addDeposite} = financeSlice.actions;
 
 export default financeSlice.reducer;

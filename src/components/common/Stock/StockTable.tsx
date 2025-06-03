@@ -46,7 +46,7 @@ const StockTable = ({ item }: StockTableProps) => {
       </li>
       <li className={style.stockComp_table_wrapper_item}>
         {isEdit?<p className={style.stockComp_table_wrapper_item_text}>{item.count*item.prices}</p>:
-        <p className={style.stockComp_table_wrapper_item_input}>{editValue.count*editValue.prices}</p>}
+        <input className={style.stockComp_table_wrapper_item_input} readOnly value={editValue.count*editValue.prices}/>}
       </li>
       <li className={classNames(style.stockComp_table_wrapper_item,style.stockComp_table_wrapper_buttons)}>
         <button onClick={handleDelete} className={style.stockComp_table_wrapper_buttons_item}>Sil</button>

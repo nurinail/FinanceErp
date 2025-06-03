@@ -85,3 +85,8 @@ export interface LoginType{
 export interface LoginSignUpInitialState{
     users:LoginType[];
 }
+
+export interface DepositeType{
+    amount:number,
+    method:string,
+}

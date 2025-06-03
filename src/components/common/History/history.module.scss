@@ -71,12 +71,15 @@
     }
     .historyTableComp_tableWrapper {
       width: 100%;
-      overflow-y: auto;
       width: 100%;
+      overflow-y: auto;
+      
       .historyTableComp_table {
+        position: relative;
         margin-top: 1rem;
         width: 100%;
         border-collapse: collapse;
+       
         thead,
         tbody {
           tr {
@@ -97,6 +100,14 @@
           }
           tr:nth-child(even) {
             background-color: #fafafa;
+          }
+        }
+        thead{
+          tr{
+            position: sticky;
+            top: 0;
+            z-index: 1;
+
           }
         }
       }

@@ -44,7 +44,7 @@ const HistoryTable = () => {
                 {item}
               </button>
             </li>
-          ))}
+          ))} 
         </ul>
         <div className={style.historyTableComp_tabs_notife}>
           <span className={style.historyTableComp_tabs_notife_item}>Status: </span>
@@ -57,7 +57,7 @@ const HistoryTable = () => {
             <tr>
                 <th>Ref ID</th>
                 <th>Tarix</th>
-                <th>Tipi</th>
+                <th>Ad</th>
                 <th>Təsvir</th>
                 <th>Əməliyyat</th>
                 <th>Məbləğ</th>
