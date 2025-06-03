@@ -51,6 +51,7 @@ const CashInModal = ({ setIsModal }: ModalType) => {
     setTimeout(() => {
       setIsModal(false);
     }, 1500);
+    reset();
     setIsMessage(true);
     dispatch(addDeposite(newDeposite));
   };

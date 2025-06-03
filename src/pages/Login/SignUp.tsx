@@ -41,7 +41,8 @@ const SignUp = () => {
             password:data.password,
           }
           dispatch(addUser(newUser));
-          navigate("/")
+          navigate("/");
+          reset();
         }
       })
     }

@@ -1,7 +1,7 @@
 import classNames from "classnames";
-import { Badge, Space, Typography } from "antd";
-import { IoIosNotifications } from "react-icons/io";
-import { FaHistory } from "react-icons/fa";
+import { Badge, Space } from "antd";
+import { CiLogout } from "react-icons/ci";
+import { VscHistory } from "react-icons/vsc";
 import logo from "../../../assets/image/logo.svg";
 import user from "../../../assets/image/user.svg";
 import { useState } from "react";
@@ -29,9 +29,12 @@ const AppHeader = () => {
             <button onClick={()=>setIsModal(false)} className="appHeader_nav_modal_buttons_item">Xeyr</button>
           </div>
         </div>
-        <Typography.Link onClick={()=>setIsModal(prev=>!prev)} className="appHeader_nav_logout">Çıxış</Typography.Link>
+        <button onClick={()=>setIsModal(prev=>!prev)} className="appHeader_nav_logout"><CiLogout/></button>
         <Badge count={historyLenght}>
-          <FaHistory className="appHeader_nav_icon" />
+          <button className="appHeader_nav_history">
+          <VscHistory className="appHeader_nav_icon" />
+
+          </button>
         </Badge>
         <div className="appHeader_nav_user">
           <img className="appHeader_nav_user_img" src={user} alt="user" />

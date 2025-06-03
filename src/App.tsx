@@ -1,15 +1,12 @@
-import { Card, Menu, Space } from "antd";
+import { Menu } from "antd";
 import "./App.scss";
 import AppHeader from "./components/layout/AppHeader/AppHeader";
-import PageContent from "./components/layout/PageContent/PageContent";
-import AppFooter from "./components/layout/AppFooter/AppFooter";
 import { IoHomeSharp } from "react-icons/io5";
 import { SlBasket } from "react-icons/sl";
 import { FaCreditCard, FaWarehouse } from "react-icons/fa";
 import { IoIosPeople } from "react-icons/io";
 import AppRoutes from "./routes/AppRoutes";
 import { useNavigate } from "react-router-dom";
-import { Header } from "antd/es/layout/layout";
 
 function App() {
   const navigate=useNavigate();
