@@ -3,7 +3,7 @@ import { Badge, Space } from "antd";
 import { CiLogout } from "react-icons/ci";
 import { VscHistory } from "react-icons/vsc";
 import logo from "../../../assets/image/logo.svg";
-import user from "../../../assets/image/user.svg";
+import user from "../../../assets/image/image.jpg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

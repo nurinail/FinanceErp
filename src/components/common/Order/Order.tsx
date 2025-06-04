@@ -79,7 +79,7 @@ const Order = () => {
       id: orderId,
       desc: `${data.product} satışı`,
       date: formattedDate,
-      name: data.product,
+      name: data.product.trim(),
       transaction: "gəlir",
       method: data.method,
       total: totalAmount,
@@ -93,7 +93,7 @@ const Order = () => {
         setIsMessage(true);
       }else{
         setIsMessage(false);
-        // reset();
+        reset();
         dispatch(addOrder(orderItem));
         dispatch(addHistory(historyOrder));
         dispatch(handleCalculate(itemForFinance));

@@ -39,6 +39,8 @@ const HR = () => {
     const workerId = Date.now();
     const newWorker: WorkersType = {
       ...data,
+      name:data.name.trim(),
+      email:data.email.trim(),
       number: Number(data.number),
       salary: Number(data.salary),
       id: workerId,
@@ -51,7 +53,7 @@ const HR = () => {
       transaction: "İşçi qəbulu",
       date: formattedDate,
       total: Number(data.salary),
-      name: data.name,
+      name: data.name.trim(),
       method: "",
     };
     dispatch(addWorker(newWorker));

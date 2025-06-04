@@ -20,9 +20,9 @@ const OrderTable = () => {
           <option value="" disabled>
             Ödənişə görə
           </option>
-          <option value="nağd">nağd</option>
-          <option value="nağd">nisyə</option>
-          <option value="nağd">bank</option>
+          <option value="cash-in">nağd</option>
+          <option value="debitor-in">nisyə</option>
+          <option value="bank-in">bank</option>
         </select>
       </div>
       <div className={style.orderTable_container}>
@@ -45,15 +45,6 @@ const OrderTable = () => {
               ))}
           </tbody>
         </table>
-        {/* <ul className={classNames(style.orderTable_head)}>
-          <li className={style.orderTable_head_item}>Sıra</li>
-          <li className={style.orderTable_head_item}>Sifariş №</li>
-          <li className={style.orderTable_head_item}>Məhsul</li>
-          <li className={style.orderTable_head_item}>Ödəniş növü</li>
-          <li className={style.orderTable_head_item}>Tarix</li>
-          <li className={style.orderTable_head_item}>Məbləğ</li>
-          <li className={style.orderTable_head_item}>Əməliyyat</li>
-        </ul> */}
       </div>
     </div>
   );

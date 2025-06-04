@@ -32,6 +32,7 @@ const NewCustomer = ({ setIsModalCustomer }: ModalType) => {
     const customerId = Date.now();
     const newCustomer = {
       ...data,
+      
       id: customerId,
     };
     reset();
@@ -39,10 +40,11 @@ const NewCustomer = ({ setIsModalCustomer }: ModalType) => {
     dispatch(addCustomer(newCustomer));
     setTimeout(() => {
       setIsSuccess(false);
-      setIsModalCustomer((prev) => !prev);
+      setIsModalCustomer(false);
     }, 1500);
   };
   return (
+    <div className={style.newCustomer_container}>
     <form onSubmit={handleSubmit(onSubmit)} className={style.newCustomer_form}>
       <h2 className={style.newCustomer_form_title}>Yeni Müştəri</h2>
       <div className={style.newCustomer_form_item}>
@@ -53,12 +55,14 @@ const NewCustomer = ({ setIsModalCustomer }: ModalType) => {
           type="text"
           className={style.newCustomer_form_item_input}
           id="name"
-          {...register("name", { required: {
-            value:true,
-            message:"Müştəri adını daxil et!"
-          } })}
+          {...register("name", {
+            required: {
+              value: true,
+              message: "Müştəri adını daxil et!",
+            },
+          })}
         />
-        <p style={{color:"red"}}>{errors.name?.message}</p>
+        <p style={{ color: "red" }}>{errors.name?.message}</p>
       </div>
       <div className={style.newCustomer_form_item}>
         <label htmlFor="contract" className={style.newCustomer_form_item_label}>
@@ -68,12 +72,14 @@ const NewCustomer = ({ setIsModalCustomer }: ModalType) => {
           type="date"
           className={style.newCustomer_form_item_input}
           id="contract"
-          {...register("contract", { required: {
-            value:true,
-            message:"Müqavilə tarixi seçin!"
-          } })}
+          {...register("contract", {
+            required: {
+              value: true,
+              message: "Müqavilə tarixi seçin!",
+            },
+          })}
         />
-        <p style={{color:"red"}}>{errors.contract?.message}</p>
+        <p style={{ color: "red" }}>{errors.contract?.message}</p>
       </div>
       <div className={style.newCustomer_form_item}>
         <label
@@ -109,14 +115,20 @@ const NewCustomer = ({ setIsModalCustomer }: ModalType) => {
           onChange={handleFileChange}
         />
       </div>
-
-      <button type="submit" className={style.newCustomer_form_button}>
-        Əlavə Et
-      </button>
+      <div className={style.newCustomer_form_button}>
+        <button type="submit" className={style.newCustomer_form_button_item}>
+          Əlavə Et
+        </button>
+        <button onClick={()=>setIsModalCustomer(false)} type="submit" className={style.newCustomer_form_button_item}>
+          Ləğv et
+        </button>
+      </div>
       {isSuccess ? (
         <p className={style.newCustomer_form_message}>Müştəri əlavə edildi</p>
       ) : null}
     </form>
+
+    </div>
   );
 };
 

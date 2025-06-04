@@ -52,6 +52,7 @@ const Stock = () => {
     const totalAmount = Number(data.count) * Number(data.prices);
     const newInventory: InventoryType = {
       ...data,
+      name:data.name.trim(),
       count: Number(data.count),
       prices: Number(data.prices),
       total: Number(data.total),
@@ -63,7 +64,7 @@ const Stock = () => {
       id: timeId,
       desc: "Məhsul Alışı",
       date: formattedDate,
-      name: data.name,
+      name: data.name.trim(),
       method: data.method,
       transaction: "xərc",
       total: totalAmount,
