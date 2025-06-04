@@ -3,6 +3,7 @@
   @include d-flex(flex-start, flex-start, column, _);
   width: 100%;
   padding: 1rem;
+  border: 1px solid red;
   overflow: auto;
   height: 100%;
   &_title{
@@ -17,20 +18,48 @@
       border-radius: 1rem;
     }
   }
-  .orderTable_parent{
+  .orderTable_container{
+    border: 1px solid red;
     width: 100%;
     overflow: auto;
-    .orderTable_head {
-      @include d-grid(0.5fr repeat(6, 1fr), _);
+    position: relative;
+    table{
+      border-collapse: collapse;
       width: 100%;
-      &_item {
-        background-color: cadetblue;
-        color: white;
-        padding: 1rem;
-        font-weight: bold;
-        font-size: 1.3rem;
+
+      thead,tbody{
+        width: 100%;
+        *{
+          // border: 1px solid red;
+        }
+        tr{
+          th,td{
+            padding: .5rem 1rem;
+            text-align: start;
+          }
+          th{
+            background-color: cadetblue;
+            color: white;
+            font-size: 1.3rem;
+          }
+        }
+      }
+      .orderTable_container_table_head{
+        position: sticky;
+        top: 0
       }
     }
+    // .orderTable_head {
+    //   @include d-grid(0.5fr repeat(6, 1fr), _);
+    //   width: 100%;
+    //   &_item {
+    //     background-color: cadetblue;
+    //     color: white;
+    //     padding: 1rem;
+    //     font-weight: bold;
+    //     font-size: 1.3rem;
+    //   }
+    // }
     .orderTable_sect {
       @include d-grid(0.5fr repeat(6, 1fr), _);
       width: 100%;

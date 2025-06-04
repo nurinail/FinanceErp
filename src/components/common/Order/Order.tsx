@@ -93,7 +93,7 @@ const Order = () => {
         setIsMessage(true);
       }else{
         setIsMessage(false);
-        reset();
+        // reset();
         dispatch(addOrder(orderItem));
         dispatch(addHistory(historyOrder));
         dispatch(handleCalculate(itemForFinance));
