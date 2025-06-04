@@ -3,12 +3,14 @@ import logo from "../../assets/image/logo.svg";
 import style from "./loginSignUp.module.scss";
 import { useForm } from "react-hook-form";
 import type { LoginType } from "../../types/types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 import { useState } from "react";
+import { handleLoading } from "../../store/slices/other";
 
 const LoginSignUp = () => {
   const users=useSelector((state:RootState)=>state.login.users);
+  const dispatch=useDispatch()
   const navigate=useNavigate();
   const [isCorrect,setIsCorrect]=useState<boolean>(false)
   const {
@@ -24,7 +26,11 @@ const LoginSignUp = () => {
     const onSubmit=(data:LoginType)=>{
       users.map((item:LoginType)=>{
         if(item.username===data.username && item.password===data.password){
-          navigate("/history");
+          dispatch(handleLoading(true));
+          setTimeout(()=>{
+            navigate("/history");
+            dispatch(handleLoading(false))
+          },1000)
           setIsCorrect(false)
         }else{
           setIsCorrect(true)

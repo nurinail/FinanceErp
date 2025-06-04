@@ -90,3 +90,7 @@ export interface DepositeType{
     amount:number,
     method:string,
 }
+
+export interface OtherInitialState{
+    loading:boolean;
+}

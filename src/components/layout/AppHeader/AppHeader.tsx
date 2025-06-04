@@ -6,16 +6,22 @@ import logo from "../../../assets/image/logo.svg";
 import user from "../../../assets/image/user.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
+import { handleLoading } from "../../../store/slices/other";
 
 const AppHeader = () => {
   const [isModal,setIsModal]=useState<boolean>(false);
   const historyLenght=useSelector((state:RootState)=>state.history.history.length)
+  const dispatch=useDispatch();
   const navigate=useNavigate();
   const logOut=()=>{
     setIsModal(false);
-    navigate("/");
+    dispatch(handleLoading(true));
+    setTimeout(()=>{
+      navigate("/");
+      dispatch(handleLoading(false))
+    },1000)
   }
   return (
     <div className="appHeader">
