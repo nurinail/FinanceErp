@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classNames from "classnames";
 import style from "./order.module.scss";
-import NewCustomer from "./../newCustomer/NewCustomer";
+import NewCustomer from "../newCustomer/NewCustomer";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
 import { useForm } from "react-hook-form";
