@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import style from "./orderTable.module.scss";
 import OrderTableItem from "./OrderTableItem";
 import { useSelector } from "react-redux";

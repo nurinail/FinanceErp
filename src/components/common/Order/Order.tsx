@@ -19,7 +19,7 @@ const Order = () => {
   const dispatch = useDispatch();
   const [isModalCustomer, setIsModalCustomer] = useState<boolean>(false);
   const [isMessage, setIsMessage] = useState<boolean>(false);
-  const [messageValue, setMessageValue] = useState<string>(
+  const [messageValue] = useState<string>(
     "Satış miqdarı cari miqdardan az ola bilməz!"
   );
   const customers = useSelector((state: RootState) => state.order.customers);

@@ -17,16 +17,13 @@ export const orderSlice = createSlice({
     deleteOrder:(state:OrderInitialState,action:PayloadAction<number>)=>{
       state.orders=state.orders.filter((item)=>item.id!==action.payload)
     },
-    handleFilter:(state:OrderInitialState,action:PayloadAction<string>)=>{
-     
-      
-    },
+    
     addCustomer:(state:OrderInitialState,action:PayloadAction<CustomerType>)=>{
       state.customers.push(action.payload)
     }
   },
 });
 
-export const {addOrder,deleteOrder,handleFilter,addCustomer} = orderSlice.actions;
+export const {addOrder,deleteOrder,addCustomer} = orderSlice.actions;
 
 export default orderSlice.reducer;

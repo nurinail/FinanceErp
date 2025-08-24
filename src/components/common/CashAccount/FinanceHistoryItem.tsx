@@ -1,4 +1,3 @@
-import React from "react";
 import type { HistoryType } from "../../../types/types";
 
 type HistoryProps={

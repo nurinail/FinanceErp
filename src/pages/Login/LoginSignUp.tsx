@@ -16,7 +16,6 @@ const LoginSignUp = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<LoginType>({
     mode: "onSubmit",

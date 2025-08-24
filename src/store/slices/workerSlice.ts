@@ -7,50 +7,50 @@ const initialState: WorkerInitialState = {
     {
       id: 1,
       desc: "stringnumber",
-      date: "stringnumber", //
-      name: "stringnumber", //
-      email: "stringnumber", //
-      number: 23, //
-      position: "stringnumber", //
-      department: "stringnumber", //
-      place: "stringnumber", //
-      salary: 12, //
+      date: "stringnumber", 
+      name: "stringnumber", 
+      email: "stringnumber", 
+      number: 23, 
+      position: "stringnumber", 
+      department: "stringnumber", 
+      place: "stringnumber", 
+      salary: 12, 
     },
     {
       id: 1,
       desc: "stringnumber",
-      date: "stringnumber", //
-      name: "stringnumber", //
-      email: "stringnumber", //
-      number: 23, //
-      position: "stringnumber", //
-      department: "stringnumber", //
-      place: "stringnumber", //
-      salary: 12, //
+      date: "stringnumber", 
+      name: "stringnumber", 
+      email: "stringnumber", 
+      number: 23, 
+      position: "stringnumber", 
+      department: "stringnumber", 
+      place: "stringnumber", 
+      salary: 12, 
     },
     {
       id: 1,
       desc: "stringnumber",
-      date: "stringnumber", //
-      name: "stringnumber", //
-      email: "stringnumber", //
-      number: 23, //
-      position: "stringnumber", //
-      department: "stringnumber", //
-      place: "stringnumber", //
-      salary: 12, //
+      date: "stringnumber", 
+      name: "stringnumber", 
+      email: "stringnumber", 
+      number: 23, 
+      position: "stringnumber", 
+      department: "stringnumber", 
+      place: "stringnumber", 
+      salary: 12, 
     },
     {
       id: 1,
       desc: "stringnumber",
-      date: "stringnumber", //
-      name: "stringnumber", //
-      email: "stringnumber", //
-      number: 23, //
-      position: "stringnumber", //
-      department: "stringnumber", //
-      place: "stringnumber", //
-      salary: 12, //
+      date: "stringnumber", 
+      name: "stringnumber", 
+      email: "stringnumber", 
+      number: 23, 
+      position: "stringnumber", 
+      department: "stringnumber", 
+      place: "stringnumber", 
+      salary: 12, 
     },
   ],
 };
