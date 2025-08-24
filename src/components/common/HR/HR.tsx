@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import HrTable from "./HrTable";
 import type { HistoryType, WorkersType } from "../../../types/types";
 import { addWorker } from "../../../store/slices/workerSlice";
-import { addHistory } from "../../../store/slices/history";
+import { addHistory } from "../../../store/slices/historySlice";
 import type { RootState } from "../../../store/store";
 
 const HR = () => {
@@ -39,13 +39,13 @@ const HR = () => {
     const workerId = Date.now();
     const newWorker: WorkersType = {
       ...data,
-      name:data.name.trim(),
-      email:data.email.trim(),
+      name: data.name.trim(),
+      email: data.email.trim(),
       number: Number(data.number),
       salary: Number(data.salary),
       id: workerId,
       desc: "Yeni İşçi Əlavə edildi",
-      date:formattedDate,
+      date: formattedDate,
     };
     const historyWorkerItem: HistoryType = {
       id: workerId,
@@ -68,7 +68,8 @@ const HR = () => {
           <div className={style.hrComp_form_input}>
             <label
               htmlFor="fullnameInput"
-              className={style.hrComp_form_input_label}>
+              className={style.hrComp_form_input_label}
+            >
               Ad və Soyad
             </label>
             <input

@@ -7,61 +7,65 @@ import type { LoginType } from "../../types/types";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 import { useState } from "react";
-import { addUser } from "../../store/slices/login";
-interface SignUpType extends LoginType{
-  repeatpassword:string,
-} 
+import { addUser } from "../../store/slices/loginSlice";
+interface SignUpType extends LoginType {
+  repeatpassword: string;
+}
 const SignUp = () => {
-  const users=useSelector((state:RootState)=>state.login.users);
-  const dispatch=useDispatch();
-  const navigate=useNavigate();
-  const [isCorrectPassword,setIsCorrectPassword]=useState<boolean>(false);
-  const [isUserRepeat,setIsUserRepeat]=useState<boolean>(false)
+  const users = useSelector((state: RootState) => state.login.users);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isCorrectPassword, setIsCorrectPassword] = useState<boolean>(false);
+  const [isUserRepeat, setIsUserRepeat] = useState<boolean>(false);
   const {
-      register,
-      handleSubmit,
-      reset,
-      formState: { errors },
-    } = useForm<SignUpType>({
-      mode:"onSubmit",
-      defaultValues:{
-      }
-    });
-    const onSubmit=(data:SignUpType)=>{
-    if(data.password!==data.repeatpassword){
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<SignUpType>({
+    mode: "onSubmit",
+    defaultValues: {},
+  });
+  const onSubmit = (data: SignUpType) => {
+    if (data.password !== data.repeatpassword) {
       setIsCorrectPassword(true);
-    }else{
-      users.map((item)=>{
-        if(item.password===data.password && item.username===data.username){
+    } else {
+      users.map((item) => {
+        if (
+          item.password === data.password &&
+          item.username === data.username
+        ) {
           setIsUserRepeat(true);
-        }else{
+        } else {
           setIsUserRepeat(false);
-          const newUser:LoginType={
-            username:data.username,
-            password:data.password,
-          }
+          const newUser: LoginType = {
+            username: data.username,
+            password: data.password,
+          };
           dispatch(addUser(newUser));
           navigate("/");
           reset();
         }
-      })
+      });
     }
-    }
+  };
   return (
     <div className={style.loginSignUp}>
       <div className={style.loginSignUp}>
         <div className={style.loginSignUp_box}>
-          <img
-            className={style.loginSignUp_box_img}
-            src={logo}
-            alt="logo"
-          />
-          <form onSubmit={handleSubmit(onSubmit)} className={style.loginSignUp_box_form}>
-            <h2 className={style.loginSignUp_box_form_title}>Yeni Hesab Yarat</h2>
+          <img className={style.loginSignUp_box_img} src={logo} alt="logo" />
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={style.loginSignUp_box_form}
+          >
+            <h2 className={style.loginSignUp_box_form_title}>
+              Yeni Hesab Yarat
+            </h2>
             <div className={style.loginSignUp_box_form_item}>
               <label
                 className={style.loginSignUp_box_form_item_label}
-                htmlFor="username">
+                htmlFor="username"
+              >
                 Yeni username adı
               </label>
               <input
@@ -70,17 +74,19 @@ const SignUp = () => {
                 id="username"
                 placeholder="username daxil edin"
                 {...register("username", {
-                required: {
-                  value: true,
-                  message: "username adı daxil edin!",
-                },
-              })}/>
-              <p style={{color:"red"}}>{errors.username?.message}</p>
+                  required: {
+                    value: true,
+                    message: "username adı daxil edin!",
+                  },
+                })}
+              />
+              <p style={{ color: "red" }}>{errors.username?.message}</p>
             </div>
             <div className={style.loginSignUp_box_form_item}>
               <label
                 className={style.loginSignUp_box_form_item_label}
-                htmlFor="password">
+                htmlFor="password"
+              >
                 Password
               </label>
               <input
@@ -89,17 +95,19 @@ const SignUp = () => {
                 placeholder="Password"
                 id="password"
                 {...register("password", {
-                required: {
-                  value: true,
-                  message: "password daxil edin!",
-                },
-              })}/>
-              <p style={{color:"red"}}>{errors.password?.message}</p>
+                  required: {
+                    value: true,
+                    message: "password daxil edin!",
+                  },
+                })}
+              />
+              <p style={{ color: "red" }}>{errors.password?.message}</p>
             </div>
             <div className={style.loginSignUp_box_form_item}>
               <label
                 className={style.loginSignUp_box_form_item_label}
-                htmlFor="password">
+                htmlFor="password"
+              >
                 Passwordu təkrar daxil edin
               </label>
               <input
@@ -108,19 +116,35 @@ const SignUp = () => {
                 placeholder="Təkrar password"
                 id="password"
                 {...register("repeatpassword", {
-                required: {
-                  value: true,
-                  message: "təkrar passwordu daxil edin!",
-                },
-              })}/>
-              <p style={{color:"red"}}>{errors.repeatpassword?.message}</p>
-              {isCorrectPassword?<p style={{color:"red"}}>Təkrar Şifrə Səhvdir</p>:null}
+                  required: {
+                    value: true,
+                    message: "təkrar passwordu daxil edin!",
+                  },
+                })}
+              />
+              <p style={{ color: "red" }}>{errors.repeatpassword?.message}</p>
+              {isCorrectPassword ? (
+                <p style={{ color: "red" }}>Təkrar Şifrə Səhvdir</p>
+              ) : null}
             </div>
-            {isUserRepeat?<p style={{width:"100%", textAlign:"center"}} className="isUserRepeatt">Belə hesab mövcuddur</p>:null}
-            <Link style={{color:"white"}} to={"/"}>Hesabın var?</Link>
+            {isUserRepeat ? (
+              <p
+                style={{ width: "100%", textAlign: "center" }}
+                className="isUserRepeatt"
+              >
+                Belə hesab mövcuddur
+              </p>
+            ) : null}
+            <Link style={{ color: "white" }} to={"/"}>
+              Hesabın var?
+            </Link>
             <button
-              className={classNames(style.loginSignUp_box_form_btn,style.signUp_box_form_btn)}
-              type="submit">
+              className={classNames(
+                style.loginSignUp_box_form_btn,
+                style.signUp_box_form_btn
+              )}
+              type="submit"
+            >
               Hesab Yarat
             </button>
           </form>

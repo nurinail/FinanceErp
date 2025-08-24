@@ -13,7 +13,7 @@ const OrderTable = () => {
       <div className={style.orderTable_filter}>
         <input
           className={style.orderTable_filter_item}
-          type="text"
+          type="text" 
           placeholder="Axtar..."
         />
         <select className={style.orderTable_filter_item} name="" id="">

@@ -11,15 +11,17 @@ import type {
   PaymentMetodType,
 } from "../../../types/types";
 import { addOrder } from "../../../store/slices/orderSlice";
-import { addHistory } from "../../../store/slices/history";
+import { addHistory } from "../../../store/slices/historySlice";
 import OrderTable from "../OrderTable/OrderTable";
-import { handleCalculate } from "../../../store/slices/finance";
+import { handleCalculate } from "../../../store/slices/financeSlice";
 
 const Order = () => {
   const dispatch = useDispatch();
   const [isModalCustomer, setIsModalCustomer] = useState<boolean>(false);
-  const [isMessage,setIsMessage]=useState<boolean>(false);
-  const [messageValue,setMessageValue]=useState<string>("Satış miqdarı cari miqdardan az ola bilməz!")
+  const [isMessage, setIsMessage] = useState<boolean>(false);
+  const [messageValue, setMessageValue] = useState<string>(
+    "Satış miqdarı cari miqdardan az ola bilməz!"
+  );
   const customers = useSelector((state: RootState) => state.order.customers);
   const inventors = useSelector(
     (state: RootState) => state.inventory.inventory
@@ -53,18 +55,10 @@ const Order = () => {
   const onSubmit = (
     data: Omit<OrderType, "id" | "ordernumber" | "desc" | "total">
   ) => {
-    const currentDate = new Date();
-    const day = String(currentDate.getDate()).padStart(2, "0");
-    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
-    const year = currentDate.getFullYear();
 
-    const hours = String(currentDate.getHours()).padStart(2, "0");
-    const minutes = String(currentDate.getMinutes()).padStart(2, "0");
-
-    const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
     const orderId = Date.now();
     const orderNumber = Number(orderId.toString().slice(-6));
-    const totalAmount=Number(data.count) * Number(data.prices);
+    const totalAmount = Number(data.count) * Number(data.prices);
     const orderItem: OrderType = {
       ...data,
       id: orderId,
@@ -72,13 +66,13 @@ const Order = () => {
       desc: "Məhsul Satışı",
       count: Number(data.count),
       prices: Number(data.prices),
-      total:totalAmount ,
-      date: formattedDate,
+      total: totalAmount,
+      date: data.date,
     };
     const historyOrder: HistoryType = {
       id: orderId,
       desc: `${data.product} satışı`,
-      date: formattedDate,
+      date: data.date,
       name: data.product.trim(),
       transaction: "gəlir",
       method: data.method,
@@ -88,10 +82,10 @@ const Order = () => {
       amount: totalAmount,
       method: data.method,
     };
-    inventors.map(item=>{
-      if(item.name===data.product && data.count>item.count){
+    inventors.map((item) => {
+      if (item.name === data.product && data.count > item.count) {
         setIsMessage(true);
-      }else{
+      } else {
         setIsMessage(false);
         reset();
         dispatch(addOrder(orderItem));
@@ -99,7 +93,7 @@ const Order = () => {
         dispatch(handleCalculate(itemForFinance));
         console.log(bankAmount, cashAmount, debitorAmount, liabilityAmount);
       }
-    })
+    });
   };
 
   return (
@@ -270,10 +264,7 @@ const Order = () => {
           ></textarea>
           <p style={{ color: "red" }}>{errors.note?.message}</p>
         </div>
-        {
-          isMessage?<p style={{color:"red"}}>{messageValue}</p>:
-          null
-        }
+        {isMessage ? <p style={{ color: "red" }}>{messageValue}</p> : null}
         <button className={style.addButton} type="submit">
           Əlavə Et
         </button>

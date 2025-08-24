@@ -3,8 +3,8 @@ import style from "./finance.module.scss";
 import { useForm } from "react-hook-form";
 import type { DepositeType, HistoryType } from "../../../types/types";
 import { useDispatch } from "react-redux";
-import { addDeposite } from "../../../store/slices/finance";
-import { addHistory } from "../../../store/slices/history";
+import { addDeposite } from "../../../store/slices/financeSlice";
+import { addHistory } from "../../../store/slices/historySlice";
 
 type ModalType = {
   setIsModal: React.Dispatch<React.SetStateAction<boolean>>;

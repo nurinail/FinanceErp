@@ -10,8 +10,8 @@ import type {
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { addNewInventor } from "../../../store/slices/inventorySlice";
 import type { RootState } from "../../../store/store";
-import { addHistory } from "../../../store/slices/history";
-import { handleCalculate } from "../../../store/slices/finance";
+import { addHistory } from "../../../store/slices/historySlice";
+import { handleCalculate } from "../../../store/slices/financeSlice";
 import { useState } from "react";
 
 const Stock = () => {
@@ -52,7 +52,7 @@ const Stock = () => {
     const totalAmount = Number(data.count) * Number(data.prices);
     const newInventory: InventoryType = {
       ...data,
-      name:data.name.trim(),
+      name: data.name.trim(),
       count: Number(data.count),
       prices: Number(data.prices),
       total: Number(data.total),
@@ -73,16 +73,15 @@ const Stock = () => {
       amount: totalAmount,
       method: data.method,
     };
-    
+
     if (data.method === "cash-out" && totalAmount > cashAmount) {
       setMessageValue("Nağd hesabında kifayət qədər məbləğ yoxdur");
       setIsMessage(true);
-      console.log("object")
-    }
-    else if (data.method === "bank-out" && totalAmount > bankAmount) {
+      console.log("object");
+    } else if (data.method === "bank-out" && totalAmount > bankAmount) {
       setMessageValue("Bank hesabında kifayət qədər məbləğ yoxdur");
       setIsMessage(true);
-      console.log("object")
+      console.log("object");
       return;
     } else {
       setIsMessage(false);
